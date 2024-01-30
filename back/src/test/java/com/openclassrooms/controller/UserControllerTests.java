@@ -1,5 +1,4 @@
 package com.openclassrooms.controller;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -13,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +24,7 @@ import com.openclassrooms.starterjwt.services.UserService;
 @AutoConfigureMockMvc
 @EnableAutoConfiguration(exclude=SecurityAutoConfiguration.class)
 @ContextConfiguration(classes= SpringBootSecurityJwtApplication.class)
+@TestPropertySource("classpath:application-test.properties")
 public class UserControllerTests {
 
 	@Autowired
@@ -31,6 +32,7 @@ public class UserControllerTests {
 
 	@MockBean
 	private UserService service;
+
 
 	@Test
 	public void getUserControllerTest() throws Exception {
@@ -45,3 +47,4 @@ public class UserControllerTests {
 	}
 
 }
+
