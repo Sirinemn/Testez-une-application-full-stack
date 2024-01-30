@@ -46,9 +46,9 @@ describe('LoginComponent', () => {
         MatIconModule,
         MatFormFieldModule,
         MatInputModule,
-        ReactiveFormsModule]
-    })
-      .compileComponents();
+        ReactiveFormsModule,
+      ],
+    }).compileComponents();
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -59,11 +59,10 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-    function updateForm(userEmail : string, userPassword: string){
+  function updateForm(userEmail: string, userPassword: string) {
     component.form.controls['email'].setValue(userEmail);
     component.form.controls['password'].setValue(userPassword);
   }
-
   it('should call login et logIn methode', ()=>{
     //Given
     updateForm('sirine@mail.fr','Sirine123');
@@ -75,5 +74,4 @@ describe('LoginComponent', () => {
     expect(authServiceSpy).toHaveBeenCalledWith(mockLoginRequest);
     expect(sessionServiceSpy).toHaveBeenCalled();
   })
-
 });

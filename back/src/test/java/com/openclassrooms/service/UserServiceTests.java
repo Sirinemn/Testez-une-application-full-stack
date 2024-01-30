@@ -44,7 +44,7 @@ public class UserServiceTests {
 
 		}
 	@Test
-	void DeleteSessionTest() {
+	void DeleteUserTest() {
         doNothing().when(repository).deleteById(1L);
 		service.delete(1L);
         assertAll(() -> service.delete(1L));

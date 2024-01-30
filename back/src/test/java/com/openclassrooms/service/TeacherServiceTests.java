@@ -31,9 +31,9 @@ import com.openclassrooms.starterjwt.services.TeacherService;
 	@Test
 	 void getTeachersTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
-		Teacher teacher = Teacher.builder().id((long) 10).firstName("test").lastName("test").createdAt(rightNow)
+		Teacher teacher = Teacher.builder().id(10L).firstName("test").lastName("test").createdAt(rightNow)
 				.updatedAt(rightNow).build();
-		Teacher teacher1 = Teacher.builder().id((long) 11).firstName("test1").lastName("test1").createdAt(rightNow)
+		Teacher teacher1 = Teacher.builder().id(11L).firstName("test1").lastName("test1").createdAt(rightNow)
 				.updatedAt(rightNow).build();
 		when(repository.findAll()).thenReturn(Stream.of(teacher, teacher1).collect(Collectors.toList()));
 		Assertions.assertThat(service.findAll().size()).isEqualTo(2);
@@ -43,10 +43,10 @@ import com.openclassrooms.starterjwt.services.TeacherService;
 	@Test
 	 void getTeacherByIdTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
-		Teacher teacher = Teacher.builder().id((long) 10).firstName("test").lastName("test").createdAt(rightNow)
+		Teacher teacher = Teacher.builder().id(10L).firstName("test").lastName("test").createdAt(rightNow)
 				.updatedAt(rightNow).build();
 		when(repository.findById((long) 10)).thenReturn(Optional.of(teacher));
-		Assertions.assertThat(service.findById((long) 10)).isNotNull();
+		Assertions.assertThat(service.findById(10L)).isNotNull();
 		verify(repository).findById(10L);
 	}
 
