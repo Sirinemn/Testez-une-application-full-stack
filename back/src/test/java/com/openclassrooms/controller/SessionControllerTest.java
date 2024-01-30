@@ -1,11 +1,11 @@
 package com.openclassrooms.controller;
 
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,38 +18,39 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassrooms.starterjwt.SpringBootSecurityJwtApplication;
-import com.openclassrooms.starterjwt.controllers.UserController;
-import com.openclassrooms.starterjwt.dto.UserDto;
-import com.openclassrooms.starterjwt.mapper.UserMapper;
-import com.openclassrooms.starterjwt.models.User;
-import com.openclassrooms.starterjwt.services.UserService;
+import com.openclassrooms.starterjwt.controllers.SessionController;
+import com.openclassrooms.starterjwt.dto.SessionDto;
+import com.openclassrooms.starterjwt.mapper.SessionMapper;
+import com.openclassrooms.starterjwt.models.Session;
+import com.openclassrooms.starterjwt.services.SessionService;
 
-@WebMvcTest(controllers = UserController.class)
+@WebMvcTest(controllers = SessionController.class)
 @ContextConfiguration(classes= SpringBootSecurityJwtApplication.class)
 @TestPropertySource("classpath:application-test.properties")
-public class UserControllerTests {
-
-	@Autowired
-	private MockMvc mockMvc;
+class SessionControllerTest {
 	@MockBean
-	private UserMapper userMapper;
+    private  SessionMapper sessionMapper;
+	@MockBean
+    private  SessionService sessionService;
 	@Autowired
 	private ObjectMapper objectMapper;
-	@MockBean
-	private UserService service;
+	@Autowired
+	private MockMvc mockMvc;
 
 
 	@Test
-	public void getUserControllerTest() throws Exception {
+	void getSessionByIdTest() throws Exception {
+		
+		Date date = new Date();
 		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().id(10L).email("test@mail.fr").firstName("test").lastName("test").password("test123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		UserDto userDto = userMapper.toDto(user);
-		Long id =userDto.getId();
-		when(service.findById(id)).thenReturn(user);
-		String jsonResponse = objectMapper.writeValueAsString(userDto);
-		mockMvc.perform(get("/api/user/"+id).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
-				.andExpect(content().json(jsonResponse, true));
+		Session session = Session.builder().name("test").date(date)
+				.description("description test").createdAt(rightNow)
+				.teacher(null).updatedAt(rightNow).users(null).build();
+		SessionDto sessionDto = sessionMapper.toDto(session);
+		String jsonResponse = objectMapper.writeValueAsString(sessionDto);
+		mockMvc.perform(get("/api/session"+sessionDto.getId()).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
+		.andExpect(content().json(jsonResponse, true));
+
 	}
 
 }

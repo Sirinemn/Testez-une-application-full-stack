@@ -6,10 +6,14 @@ import { expect } from '@jest/globals';
 import { SessionService } from 'src/app/services/session.service';
 
 import { ListComponent } from './list.component';
+import { SessionApiService } from '../../services/session-api.service';
+import { By } from '@angular/platform-browser';
 
 describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
+  let sessionService: SessionService;
+  let sessionApiService : SessionApiService;
 
   const mockSessionService = {
     sessionInformation: {
@@ -27,10 +31,21 @@ describe('ListComponent', () => {
 
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
+    sessionService = TestBed.inject(SessionService);
+    sessionApiService = TestBed.inject(SessionApiService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  xit('should contain detail button', ()=>{
+    //Given
+    let isAdmin = mockSessionService.sessionInformation.admin;
+    //when
+    const btnElements = fixture.debugElement.queryAll(By.css('button'))
+    //then
+    if(isAdmin) expect(btnElements[2].nativeElement.textContent).toBe("Edit");
+  })
 });

@@ -45,6 +45,7 @@ public class SessoinServiceTests {
 		sessionServiceMock.create(session);
 		verify(sessionRepository, times(1)).save(session);
 	}
+	
 	@Test
 	void DeleteSessionTest() {
         doNothing().when(sessionRepository).deleteById(1L);
