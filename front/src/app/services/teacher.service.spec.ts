@@ -3,42 +3,67 @@ import { TestBed } from '@angular/core/testing';
 import { expect } from '@jest/globals';
 
 import { TeacherService } from './teacher.service';
-import { Observable, of } from 'rxjs';
 import { Teacher } from '../interfaces/teacher.interface';
+import { HttpTestingController ,HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('TeacherService', () => {
   let service: TeacherService;
-  let httpClientSpy: any;
-  let teachers: Observable<Teacher[]>;
-  let teacher: Observable<Teacher>;
+  let httpController: HttpTestingController;
+  let mockTeachers: Teacher[] =[{
+      id: 1,
+      lastName: 'test1',
+      firstName: 'test1',
+      createdAt: new Date(2024,1,2, 12,34,56),
+      updatedAt: new Date(2024,1,2, 12,34,56)
+  },{
+    id: 2,
+    lastName: 'test2',
+    firstName: 'test2',
+    createdAt: new Date(2024,1,2, 12,34,56),
+    updatedAt: new Date(2024,1,2, 12,34,56)
+},
+];
+  let mockTeacher: Teacher = {
+    id: 3,
+    lastName: 'test3',
+    firstName: 'test3',
+    createdAt: new Date(2024,2,2, 11,34,56),
+    updatedAt: new Date(2024,2,2, 11,34,56)
+  };
   beforeEach(() => {
-    httpClientSpy = {
-      all : jest.fn(),
-      detail: jest.fn()
-    }
+
     TestBed.configureTestingModule({
       imports:[
-        HttpClientModule
+        HttpClientModule,
+        HttpClientTestingModule
       ]
     });
-    //service = TestBed.inject(TeacherService);
-    service = new TeacherService(httpClientSpy);
+    service = TestBed.inject(TeacherService);
+    httpController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
   it('should get all teachers', () =>{
-    jest.spyOn(httpClientSpy, 'all').mockReturnValue(of(teachers));
-    service.all();
-    expect(httpClientSpy.get).toBeCalledTimes(1);
-    //expect(httpClientSpy.get).toHaveBeenCalledWith('http://localhost:8080api/teacher');
-
+  service.all().subscribe((res) =>{
+  expect(res).toEqual(mockTeachers);
+  });
+  const req = httpController.expectOne({
+    method: 'GET',
+    url: 'api/teacher'
   })
-  it('', ()=>{
-    jest.spyOn(httpClientSpy, 'detail').mockReturnValue(of(teacher));
-    service.detail('1');
-    expect(httpClientSpy.get).toBeCalledTimes(1);
-    //expect(httpClientSpy.get).toHaveBeenCalledWith('http://localhost:8080api/teacher/1');
-  })
+  req.flush(mockTeachers);
+ });
+  it('should get a teacher by id ', ()=>{
+    const id ='1';
+    service.detail(id).subscribe((res) =>{
+      expect(res).toEqual(mockTeacher);
+    });
+    const req = httpController.expectOne({
+      method: 'GET',
+      url: 'api/teacher/1'
+    });
+    req.flush(mockTeacher);
+  });
 });
