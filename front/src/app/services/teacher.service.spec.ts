@@ -4,39 +4,40 @@ import { expect } from '@jest/globals';
 
 import { TeacherService } from './teacher.service';
 import { Teacher } from '../interfaces/teacher.interface';
-import { HttpTestingController ,HttpClientTestingModule} from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  HttpClientTestingModule,
+} from '@angular/common/http/testing';
 
 describe('TeacherService', () => {
   let service: TeacherService;
   let httpController: HttpTestingController;
-  let mockTeachers: Teacher[] =[{
+  let mockTeachers: Teacher[] = [
+    {
       id: 1,
       lastName: 'test1',
       firstName: 'test1',
-      createdAt: new Date(2024,1,2, 12,34,56),
-      updatedAt: new Date(2024,1,2, 12,34,56)
-  },{
-    id: 2,
-    lastName: 'test2',
-    firstName: 'test2',
-    createdAt: new Date(2024,1,2, 12,34,56),
-    updatedAt: new Date(2024,1,2, 12,34,56)
-},
-];
+      createdAt: new Date(2024, 1, 2, 12, 34, 56),
+      updatedAt: new Date(2024, 1, 2, 12, 34, 56),
+    },
+    {
+      id: 2,
+      lastName: 'test2',
+      firstName: 'test2',
+      createdAt: new Date(2024, 1, 2, 12, 34, 56),
+      updatedAt: new Date(2024, 1, 2, 12, 34, 56),
+    },
+  ];
   let mockTeacher: Teacher = {
     id: 3,
     lastName: 'test3',
     firstName: 'test3',
-    createdAt: new Date(2024,2,2, 11,34,56),
-    updatedAt: new Date(2024,2,2, 11,34,56)
+    createdAt: new Date(2024, 2, 2, 11, 34, 56),
+    updatedAt: new Date(2024, 2, 2, 11, 34, 56),
   };
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-      imports:[
-        HttpClientModule,
-        HttpClientTestingModule
-      ]
+      imports: [HttpClientModule, HttpClientTestingModule],
     });
     service = TestBed.inject(TeacherService);
     httpController = TestBed.inject(HttpTestingController);
@@ -45,24 +46,26 @@ describe('TeacherService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  it('should get all teachers', () =>{
-  service.all().subscribe((res) =>{
-  expect(res).toEqual(mockTeachers);
-  });
-  const req = httpController.expectOne({
-    method: 'GET',
-    url: 'api/teacher'
-  })
-  req.flush(mockTeachers);
- });
-  it('should get a teacher by id ', ()=>{
-    const id ='1';
-    service.detail(id).subscribe((res) =>{
-      expect(res).toEqual(mockTeacher);
+  it('should get all teachers', (done) => {
+    service.all().subscribe((res) => {
+      expect(res).toEqual(mockTeachers);
+      done();
     });
     const req = httpController.expectOne({
       method: 'GET',
-      url: 'api/teacher/1'
+      url: 'api/teacher',
+    });
+    req.flush(mockTeachers);
+  });
+  it('should get a teacher by id ', (done) => {
+    const id = '1';
+    service.detail(id).subscribe((res) => {
+      expect(res).toEqual(mockTeacher);
+      done();
+    });
+    const req = httpController.expectOne({
+      method: 'GET',
+      url: `api/teacher/${id}`,
     });
     req.flush(mockTeacher);
   });

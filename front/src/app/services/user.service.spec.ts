@@ -34,25 +34,27 @@ describe('UserService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get delete a user', () => {
+  it('should delete a user', () => {
     const id = '1';
     service.delete(id).subscribe((res) => {
       expect(res).toEqual(Observable<any>);
     });
     const req = http.expectOne({
       method: 'DELETE',
-      url: 'api/user/1',
+      url: `api/user/${id}`,
     });
   });
 
-  it(' should get a user', () => {
+  it(' should get a user by id', (done) => {
     const id = '1';
     service.getById(id).subscribe((res) => {
-      expect(res).toEqual(userMock);
+      expect(res).toEqual(userMock)
+      done();
+
     });
     const req = http.expectOne({
       method: 'GET',
-      url: 'api/user/1',
+      url: `api/user/${id}`,
     });
     req.flush(userMock);
   });
