@@ -1,7 +1,10 @@
 package com.openclassrooms.controller;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassrooms.starterjwt.SpringBootSecurityJwtApplication;
 import com.openclassrooms.starterjwt.dto.UserDto;
+import com.openclassrooms.starterjwt.mapper.UserMapper;
+import com.openclassrooms.starterjwt.models.User;
 import com.openclassrooms.starterjwt.services.UserService;
 
 @SpringBootTest
@@ -29,20 +34,25 @@ public class UserControllerTests {
 
 	@Autowired
 	private MockMvc mockMvc;
-
+	@Autowired
+	private ObjectMapper objectMapper;
 	@MockBean
 	private UserService service;
+	@MockBean
+	private UserMapper userMapper;
 
 
 	@Test
 	public void getUserControllerTest() throws Exception {
-	    ObjectMapper objectMapper = new ObjectMapper();
-	    		UserDto userDto = UserDto.builder().id(2L).email("test@mail.fr").firstName("test").lastName("test")
-				.password("test123").admin(true).createdAt(null).updatedAt(null).build();
-	    		
+
+		LocalDateTime rightNow = LocalDateTime.now();
+		User user = User.builder().id(10L).email("test@mail.fr").firstName("test").lastName("test").password("test123")
+				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
+		UserDto userDto = userMapper.toDto(user);
+		Long id =userDto.getId();
+		when(service.findById(id)).thenReturn(user);
 		String jsonResponse = objectMapper.writeValueAsString(userDto);
-		mockMvc.perform(get("/api/user/2").contentType(MediaType.APPLICATION_JSON_VALUE))
-		.andExpect(status().isOk())
+		mockMvc.perform(get("/api/user/"+id).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk())
 				.andExpect(content().json(jsonResponse, true));
 	}
 

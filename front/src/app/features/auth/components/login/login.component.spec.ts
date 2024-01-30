@@ -1,6 +1,6 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,22 +13,31 @@ import { SessionService } from 'src/app/services/session.service';
 import { LoginComponent } from './login.component';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../interfaces/loginRequest.interface';
-import { Route, Router } from '@angular/router';
+import { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';
+import { of } from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
-  let authServiceMock: any;
   let fixture: ComponentFixture<LoginComponent>;
-  let sessionServiceMock: any;
-  let loginRequest: LoginRequest;
-  let form: FormBuilder;
-  let router: Router;
-  let spy: any;
-
+  let authService: AuthService;
+  let sessionService: SessionService;
+  let mockSessionInformation: SessionInformation = {
+    token: 'azertyuiop',
+    type: 'mockType',
+    id: 1,
+    username: 'mockUserName',
+    firstName: 'mockFirstName',
+    lastName: 'mockLastName',
+    admin: false,
+  };
+  let mockLoginRequest: LoginRequest = {
+    email: 'sirine@mail.fr',
+    password: 'Sirine123',
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      providers: [SessionService],
+      providers: [SessionService, AuthService],
       imports: [
         RouterTestingModule,
         BrowserAnimationsModule,
@@ -43,6 +52,8 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    authService = TestBed.inject(AuthService);
+    sessionService = TestBed.inject(SessionService);
   });
 
   it('should create', () => {
@@ -52,19 +63,15 @@ describe('LoginComponent', () => {
     component.form.controls['email'].setValue(userEmail);
     component.form.controls['password'].setValue(userPassword);
   }
-  beforeEach(() => {
-    authServiceMock = { login: jest.fn };
-    sessionServiceMock = { logIn: jest.fn };
-    component = new LoginComponent(
-      authServiceMock,
-      form,
-      router,
-      sessionServiceMock
-    );
-  });
-  it('', () => {
-    updateForm('test@test.fr', 'test1234');
-    expect(component.submit()).toBeTruthy();
-    expect(sessionServiceMock.logIn()).toBeTruthy();
-  });
+  it('should call login et logIn methode', ()=>{
+    //Given
+    updateForm('sirine@mail.fr','Sirine123');
+    let sessionServiceSpy = jest.spyOn(sessionService, 'logIn');
+    let authServiceSpy = jest.spyOn(authService,'login').mockReturnValue(of(mockSessionInformation));
+    //when
+    component.submit();
+    //then
+    expect(authServiceSpy).toHaveBeenCalledWith(mockLoginRequest);
+    expect(sessionServiceSpy).toHaveBeenCalled();
+  })
 });

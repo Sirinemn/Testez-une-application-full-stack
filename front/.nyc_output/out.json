@@ -388,7 +388,7 @@
       "0": 1,
       "1": 1,
       "2": 1,
-      "3": 74,
+      "3": 49,
       "4": 1,
       "5": 1,
       "6": 1,
@@ -404,7 +404,7 @@
     "f": {
       "0": 1,
       "1": 1,
-      "2": 74,
+      "2": 49,
       "3": 1,
       "4": 0,
       "5": 1,
@@ -703,26 +703,26 @@
     },
     "s": {
       "0": 1,
-      "1": 0,
-      "2": 0,
-      "3": 0,
+      "1": 1,
+      "2": 1,
+      "3": 1,
       "4": 0,
       "5": 1,
-      "6": 0,
+      "6": 1,
       "7": 1,
       "8": 1
     },
     "f": {
       "0": 1,
-      "1": 0,
-      "2": 0,
+      "1": 1,
+      "2": 1,
       "3": 0,
-      "4": 0
+      "4": 1
     },
     "b": {
       "0": [
-        0,
-        0
+        1,
+        1
       ]
     },
     "inputSourceMap": {
@@ -2233,105 +2233,105 @@
       "1": 0,
       "2": 0,
       "3": 0,
-      "4": 0,
-      "5": 0,
-      "6": 0,
-      "7": 0,
-      "8": 0,
-      "9": 0,
-      "10": 0,
+      "4": 3,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
       "11": 0,
       "12": 0,
       "13": 0,
-      "14": 0,
-      "15": 0,
-      "16": 0,
-      "17": 0,
-      "18": 0,
-      "19": 0,
-      "20": 0,
-      "21": 0,
-      "22": 0,
-      "23": 0,
-      "24": 0,
-      "25": 0,
-      "26": 0,
-      "27": 0,
-      "28": 0,
-      "29": 0,
-      "30": 0,
-      "31": 0,
-      "32": 0,
-      "33": 0,
-      "34": 0,
-      "35": 0,
-      "36": 0,
-      "37": 0,
-      "38": 0,
-      "39": 0,
-      "40": 0,
-      "41": 0,
-      "42": 0,
-      "43": 0,
-      "44": 0,
-      "45": 0,
-      "46": 0,
-      "47": 0,
-      "48": 0,
-      "49": 0,
-      "50": 0,
-      "51": 0,
-      "52": 0,
-      "53": 0,
-      "54": 0,
-      "55": 0,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "20": 3,
+      "21": 1,
+      "22": 1,
+      "23": 1,
+      "24": 1,
+      "25": 1,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 1,
+      "30": 1,
+      "31": 1,
+      "32": 1,
+      "33": 1,
+      "34": 1,
+      "35": 1,
+      "36": 1,
+      "37": 1,
+      "38": 1,
+      "39": 1,
+      "40": 1,
+      "41": 1,
+      "42": 3,
+      "43": 2,
+      "44": 2,
+      "45": 2,
+      "46": 2,
+      "47": 2,
+      "48": 2,
+      "49": 2,
+      "50": 2,
+      "51": 2,
+      "52": 2,
+      "53": 2,
+      "54": 2,
+      "55": 2,
       "56": 1,
-      "57": 0,
-      "58": 0,
-      "59": 0,
-      "60": 0,
-      "61": 0,
-      "62": 0,
+      "57": 1,
+      "58": 1,
+      "59": 1,
+      "60": 1,
+      "61": 1,
+      "62": 1,
       "63": 0,
       "64": 0,
       "65": 0,
       "66": 0,
       "67": 0,
       "68": 1,
-      "69": 0,
+      "69": 1,
       "70": 1,
-      "71": 0,
-      "72": 0,
-      "73": 0,
+      "71": 4,
+      "72": 1,
+      "73": 1,
       "74": 0,
-      "75": 0,
-      "76": 0,
-      "77": 0,
-      "78": 0,
-      "79": 0,
-      "80": 0,
-      "81": 0,
-      "82": 0,
-      "83": 0,
-      "84": 0,
-      "85": 0,
-      "86": 0,
+      "75": 1,
+      "76": 1,
+      "77": 1,
+      "78": 1,
+      "79": 1,
+      "80": 1,
+      "81": 1,
+      "82": 1,
+      "83": 1,
+      "84": 4,
+      "85": 3,
+      "86": 3,
       "87": 1
     },
     "f": {
       "0": 0,
-      "1": 0,
+      "1": 3,
       "2": 0,
-      "3": 0,
+      "3": 3,
       "4": 1,
-      "5": 0,
-      "6": 0,
-      "7": 0,
+      "5": 1,
+      "6": 1,
+      "7": 1,
       "8": 0,
       "9": 0,
       "10": 0,
-      "11": 0,
-      "12": 0,
+      "11": 1,
+      "12": 4,
       "13": 0
     },
     "b": {
@@ -2340,28 +2340,28 @@
         0
       ],
       "1": [
-        0,
-        0
+        1,
+        2
       ],
       "2": [
-        0,
-        0
+        1,
+        2
       ],
       "3": [
-        0,
-        0
+        2,
+        1
       ],
       "4": [
-        0,
-        0
+        1,
+        1
       ],
       "5": [
-        0,
-        0
+        1,
+        3
       ],
       "6": [
-        0,
-        0
+        3,
+        1
       ]
     },
     "inputSourceMap": {
@@ -2404,12 +2404,12 @@
         "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\components\\me\\me.component.ts"
       ],
       "sourcesContent": [
-        "<div class=\"m3\">\r\n  <mat-card>\r\n    <mat-card-title>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n        <button mat-icon-button (click)=\"back()\">\r\n          <mat-icon>arrow_back</mat-icon>\r\n        </button>\r\n        <h1>User information</h1>\r\n      </div>\r\n    </mat-card-title>\r\n    <mat-card-content>\r\n      <div *ngIf=\"user\" fxLayout=\"column\" fxLayoutAlign=\"start center\">\r\n        <p>Name: {{ user.firstName }} {{ user.lastName | uppercase }}</p>\r\n        <p>Email: {{ user.email }}</p>\r\n        <p *ngIf=\"user.admin\" class=\"my2\">You are admin</p>\r\n        <div *ngIf=\"!user.admin\" fxLayout=\"column\" class=\"my2\" fxLayoutAlign=\"center center\">\r\n          <p>Delete my account:</p>\r\n          <button mat-raised-button color=\"warn\" (click)=\"delete()\">\r\n            <mat-icon>delete</mat-icon>\r\n            <span class=\"ml1\">Detail</span>\r\n          </button>\r\n        </div>\r\n        <div fxLayoutAlign=\"space-between center\" class=\"p2 w100\">\r\n\r\n          <p><i>Create at: </i> {{ user.createdAt | date: 'longDate'}}</p>\r\n          <p><i>Last update: </i> {{ user.updatedAt| date: 'longDate'}}</p>\r\n        </div>\r\n      </div>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</div>\r\n",
+        "<div class=\"m3\">\r\n  <mat-card>\r\n    <mat-card-title>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n        <button mat-icon-button (click)=\"back()\">\r\n          <mat-icon>arrow_back</mat-icon>\r\n        </button>\r\n        <h1>User information</h1>\r\n      </div>\r\n    </mat-card-title>\r\n    <mat-card-content>\r\n      <div *ngIf=\"user\" fxLayout=\"column\" fxLayoutAlign=\"start center\">\r\n        <p>Name: {{ user.firstName }} {{ user.lastName | uppercase }}</p>\r\n        <p>Email: {{ user.email }}</p>\r\n        <p *ngIf=\"user.admin\" class=\"my2\">You are admin</p>\r\n        <div *ngIf=\"!user.admin\" fxLayout=\"column\" class=\"my2\" fxLayoutAlign=\"center center\">\r\n          <p>Delete my account:</p>\r\n          <button mat-raised-button color=\"warn\" (click)=\"delete()\">\r\n            <mat-icon>delete</mat-icon>\r\n            <span class=\"ml1\">Delete</span>\r\n          </button>\r\n        </div>\r\n        <div fxLayoutAlign=\"space-between center\" class=\"p2 w100\">\r\n\r\n          <p><i>Create at: </i> {{ user.createdAt | date: 'longDate'}}</p>\r\n          <p><i>Last update: </i> {{ user.updatedAt| date: 'longDate'}}</p>\r\n        </div>\r\n      </div>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</div>\r\n",
         "import { Component, OnInit } from '@angular/core';\r\nimport { MatSnackBar } from '@angular/material/snack-bar';\r\nimport { Router } from '@angular/router';\r\nimport { User } from '../../interfaces/user.interface';\r\nimport { SessionService } from '../../services/session.service';\r\nimport { UserService } from '../../services/user.service';\r\n\r\n@Component({\r\n  selector: 'app-me',\r\n  templateUrl: './me.component.html',\r\n  styleUrls: ['./me.component.scss']\r\n})\r\nexport class MeComponent implements OnInit {\r\n\r\n  public user: User | undefined;\r\n\r\n  constructor(private router: Router,\r\n              private sessionService: SessionService,\r\n              private matSnackBar: MatSnackBar,\r\n              private userService: UserService) {\r\n  }\r\n\r\n  public ngOnInit(): void {\r\n    this.userService\r\n      .getById(this.sessionService.sessionInformation!.id.toString())\r\n      .subscribe((user: User) => this.user = user);\r\n  }\r\n\r\n  public back(): void {\r\n    window.history.back();\r\n  }\r\n\r\n  public delete(): void {\r\n    this.userService\r\n      .delete(this.sessionService.sessionInformation!.id.toString())\r\n      .subscribe((_) => {\r\n        this.matSnackBar.open(\"Your account has been deleted !\", 'Close', { duration: 3000 });\r\n        this.sessionService.logOut();\r\n        this.router.navigate(['/']);\r\n      })\r\n  }\r\n\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "287e57ae5f37207516e4dc11b737729419e287c3"
+    "hash": "767807ab6b4bfe505b20b2a4746bdd5707b9ba24"
   },
   "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\components\\not-found\\not-found.component.ts": {
     "path": "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\components\\not-found\\not-found.component.ts",
@@ -2994,10 +2994,10 @@
       "0": 1,
       "1": 1,
       "2": 1,
-      "3": 1,
+      "3": 2,
       "4": 0,
       "5": 0,
-      "6": 1,
+      "6": 2,
       "7": 1,
       "8": 1,
       "9": 1,
@@ -3006,13 +3006,13 @@
     "f": {
       "0": 1,
       "1": 1,
-      "2": 1,
+      "2": 2,
       "3": 1
     },
     "b": {
       "0": [
         0,
-        1
+        2
       ],
       "1": [
         1,
@@ -4937,7 +4937,7 @@
       }
     },
     "s": {
-      "0": 35,
+      "0": 10,
       "1": 1,
       "2": 1,
       "3": 1,
@@ -4963,13 +4963,13 @@
       "23": 1,
       "24": 1,
       "25": 1,
-      "26": 74,
+      "26": 49,
       "27": 0,
       "28": 0,
       "29": 1,
       "30": 1,
       "31": 1,
-      "32": 75,
+      "32": 50,
       "33": 1,
       "34": 1,
       "35": 1,
@@ -4980,27 +4980,27 @@
       "40": 1,
       "41": 1,
       "42": 1,
-      "43": 75,
-      "44": 74,
-      "45": 74,
-      "46": 74,
+      "43": 50,
+      "44": 49,
+      "45": 49,
+      "46": 49,
       "47": 1
     },
     "f": {
-      "0": 35,
+      "0": 10,
       "1": 0,
       "2": 41,
       "3": 1,
       "4": 1,
-      "5": 74,
+      "5": 49,
       "6": 0,
       "7": 1,
-      "8": 75
+      "8": 50
     },
     "b": {
       "0": [
         1,
-        34
+        9
       ],
       "1": [
         1,
@@ -5012,16 +5012,16 @@
       ],
       "3": [
         1,
-        74
+        49
       ],
       "4": [
-        74,
+        49,
         1
       ]
     },
     "inputSourceMap": {
       "version": 3,
-      "mappings": ";;;;;;;;;;;;IAGIA,4BAAiD,CAAjD,EAAiD,MAAjD,EAAiD,CAAjD;IAC2CA;IAAQA;IACjDA;IAAmCA;IAAOA;IAC1CA;IAAMA;MAAAA;MAAA;MAAA,OAASA,+BAAT;IAAiB,CAAjB;IAA4CA;IAAMA;;;;;;IAGxDA,4BAAK,CAAL,EAAK,MAAL,EAAK,CAAL;IACwCA;IAAKA;IAC3CA;IAAyCA;IAAQA;;;;ACCzD,WAAaC,YAAb;EAAM,MAAOA,YAAP,CAAmB;IACvBC,YACUC,WADV,EAEUC,MAFV,EAGUC,cAHV,EAGwC;MAF9B;MACA;MACA;IACT;;IAEMC,SAAS;MACd,OAAO,KAAKD,cAAL,CAAoBC,SAApB,EAAP;IACD;;IAEMC,MAAM;MACX,KAAKF,cAAL,CAAoBG,MAApB;MACA,KAAKJ,MAAL,CAAYK,QAAZ,CAAqB,CAAC,EAAD,CAArB;IACD;;EAdsB;;;qBAAZR,cAAYD;EAAA;;;UAAZC;IAAYS;IAAAC;IAAAC;IAAAC;IAAAC;MAAA;QDZzBd,+BAAiB,CAAjB,EAAiB,aAAjB,EAAiB,CAAjB,EAAiB,CAAjB,EAAiB,MAAjB;QAEUA;QAAQA;QACdA;;QAKAA;QAMFA;QACAA;QACEA;QACFA;;;;;;QAdQA;QAAAA,6DAA2B,UAA3B,EAA2Be,GAA3B;;;;;;ECSV,OAAad,YAAb;AAAA",
+      "mappings": ";;;;;;;;;;;;IAGIA,4BAAiD,CAAjD,EAAiD,MAAjD,EAAiD,CAAjD;IAC2CA;IAAQA;IACjDA;IAAgDA;IAAOA;IACvDA;IAAMA;MAAAA;MAAA;MAAA,OAASA,+BAAT;IAAiB,CAAjB;IAA4CA;IAAMA;;;;;;IAGxDA,4BAAK,CAAL,EAAK,MAAL,EAAK,CAAL;IACwCA;IAAKA;IAC3CA;IAAyCA;IAAQA;;;;ACCzD,WAAaC,YAAb;EAAM,MAAOA,YAAP,CAAmB;IACvBC,YACUC,WADV,EAEUC,MAFV,EAGUC,cAHV,EAGwC;MAF9B;MACA;MACA;IACT;;IAEMC,SAAS;MACd,OAAO,KAAKD,cAAL,CAAoBC,SAApB,EAAP;IACD;;IAEMC,MAAM;MACX,KAAKF,cAAL,CAAoBG,MAApB;MACA,KAAKJ,MAAL,CAAYK,QAAZ,CAAqB,CAAC,EAAD,CAArB;IACD;;EAdsB;;;qBAAZR,cAAYD;EAAA;;;UAAZC;IAAYS;IAAAC;IAAAC;IAAAC;IAAAC;MAAA;QDZzBd,+BAAiB,CAAjB,EAAiB,aAAjB,EAAiB,CAAjB,EAAiB,CAAjB,EAAiB,MAAjB;QAEUA;QAAQA;QACdA;;QAKAA;QAMFA;QACAA;QACEA;QACFA;;;;;;QAdQA;QAAAA,6DAA2B,UAA3B,EAA2Be,GAA3B;;;;;;ECSV,OAAad,YAAb;AAAA",
       "names": [
         "i0",
         "AppComponent",
@@ -5046,12 +5046,12 @@
         "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\app.component.ts"
       ],
       "sourcesContent": [
-        "<div class=\"app\">\r\n  <mat-toolbar color=\"primary\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n    <span>Yoga app</span>\r\n    <div *ngIf=\"$isLogged() | async; else notLogged\">\r\n      <span routerLink=\"sessions\" class=\"link\">Sessions</span>\r\n      <span routerLink=\"me\" class=\"link\">Account</span>\r\n      <span (click)=\"logout()\" class=\"link\" id=\"logout\">Logout</span>\r\n    </div>\r\n    <ng-template #notLogged>\r\n      <div>\r\n        <span routerLink=\"login\" class=\"link\">Login</span>\r\n        <span routerLink=\"register\" class=\"link\">Register</span>\r\n      </div>\r\n    </ng-template>\r\n  </mat-toolbar>\r\n  <div>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n</div>\r\n",
+        "<div class=\"app\">\r\n  <mat-toolbar color=\"primary\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n    <span>Yoga app</span>\r\n    <div *ngIf=\"$isLogged() | async; else notLogged\">\r\n      <span routerLink=\"sessions\" class=\"link\">Sessions</span>\r\n      <span routerLink=\"me\" class=\"link\" id=\"account\">Account</span>\r\n      <span (click)=\"logout()\" class=\"link\" id=\"logout\">Logout</span>\r\n    </div>\r\n    <ng-template #notLogged>\r\n      <div>\r\n        <span routerLink=\"login\" class=\"link\">Login</span>\r\n        <span routerLink=\"register\" class=\"link\">Register</span>\r\n      </div>\r\n    </ng-template>\r\n  </mat-toolbar>\r\n  <div>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n</div>\r\n",
         "import { Component, OnInit } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\nimport { Observable } from 'rxjs';\r\nimport { AuthService } from './features/auth/services/auth.service';\r\nimport { SessionInformation } from './interfaces/sessionInformation.interface';\r\nimport { SessionService } from './services/session.service';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss']\r\n})\r\nexport class AppComponent {\r\n  constructor(\r\n    private authService: AuthService,\r\n    private router: Router,\r\n    private sessionService: SessionService) {\r\n  }\r\n\r\n  public $isLogged(): Observable<boolean> {\r\n    return this.sessionService.$isLogged();\r\n  }\r\n\r\n  public logout(): void {\r\n    this.sessionService.logOut();\r\n    this.router.navigate([''])\r\n  }\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "2e9292ace798216a412669d638c4e9d9575085ae"
+    "hash": "436e91710912d9f5cfa1935c997c13ab227b6e64"
   },
   "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\interceptors\\jwt.interceptor.ts": {
     "path": "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\interceptors\\jwt.interceptor.ts",
@@ -9119,26 +9119,26 @@
     },
     "s": {
       "0": 1,
-      "1": 1,
-      "2": 1,
-      "3": 1,
+      "1": 0,
+      "2": 0,
+      "3": 0,
       "4": 0,
       "5": 1,
-      "6": 1,
+      "6": 0,
       "7": 1,
       "8": 1
     },
     "f": {
       "0": 1,
-      "1": 1,
-      "2": 1,
+      "1": 0,
+      "2": 0,
       "3": 0,
-      "4": 1
+      "4": 0
     },
     "b": {
       "0": [
-        1,
-        1
+        0,
+        0
       ]
     },
     "inputSourceMap": {
@@ -14309,10 +14309,10 @@
       }
     },
     "s": {
-      "0": 29,
-      "1": 1,
-      "2": 1,
-      "3": 1,
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
       "4": 0,
       "5": 0,
       "6": 0,
@@ -14326,117 +14326,117 @@
       "14": 0,
       "15": 0,
       "16": 0,
-      "17": 29,
-      "18": 1,
-      "19": 1,
-      "20": 1,
+      "17": 0,
+      "18": 0,
+      "19": 0,
+      "20": 0,
       "21": 0,
       "22": 0,
       "23": 0,
-      "24": 1,
-      "25": 1,
-      "26": 1,
-      "27": 1,
-      "28": 1,
-      "29": 1,
-      "30": 1,
-      "31": 1,
-      "32": 1,
-      "33": 1,
-      "34": 1,
-      "35": 1,
-      "36": 1,
-      "37": 1,
-      "38": 1,
-      "39": 1,
-      "40": 1,
-      "41": 1,
-      "42": 1,
-      "43": 1,
-      "44": 1,
-      "45": 1,
-      "46": 1,
-      "47": 1,
-      "48": 1,
-      "49": 29,
-      "50": 28,
-      "51": 28,
-      "52": 28,
-      "53": 28,
-      "54": 28,
-      "55": 28,
-      "56": 28,
+      "24": 0,
+      "25": 0,
+      "26": 0,
+      "27": 0,
+      "28": 0,
+      "29": 0,
+      "30": 0,
+      "31": 0,
+      "32": 0,
+      "33": 0,
+      "34": 0,
+      "35": 0,
+      "36": 0,
+      "37": 0,
+      "38": 0,
+      "39": 0,
+      "40": 0,
+      "41": 0,
+      "42": 0,
+      "43": 0,
+      "44": 0,
+      "45": 0,
+      "46": 0,
+      "47": 0,
+      "48": 0,
+      "49": 0,
+      "50": 0,
+      "51": 0,
+      "52": 0,
+      "53": 0,
+      "54": 0,
+      "55": 0,
+      "56": 0,
       "57": 1,
-      "58": 1,
-      "59": 1,
-      "60": 1,
-      "61": 1,
-      "62": 1,
-      "63": 1,
-      "64": 1,
-      "65": 1,
-      "66": 1,
-      "67": 1,
+      "58": 0,
+      "59": 0,
+      "60": 0,
+      "61": 0,
+      "62": 0,
+      "63": 0,
+      "64": 0,
+      "65": 0,
+      "66": 0,
+      "67": 0,
       "68": 0,
-      "69": 1,
-      "70": 1,
+      "69": 0,
+      "70": 0,
       "71": 0,
       "72": 0,
       "73": 0,
       "74": 0,
-      "75": 1,
+      "75": 0,
       "76": 0,
       "77": 0,
       "78": 0,
       "79": 0,
       "80": 0,
       "81": 0,
-      "82": 1,
+      "82": 0,
       "83": 0,
       "84": 0,
       "85": 1,
-      "86": 1,
+      "86": 0,
       "87": 1,
-      "88": 29,
-      "89": 1,
-      "90": 1,
-      "91": 1,
-      "92": 1,
-      "93": 1,
-      "94": 1,
-      "95": 1,
-      "96": 1,
-      "97": 29,
-      "98": 28,
-      "99": 28,
-      "100": 28,
-      "101": 28,
-      "102": 28,
-      "103": 28,
+      "88": 0,
+      "89": 0,
+      "90": 0,
+      "91": 0,
+      "92": 0,
+      "93": 0,
+      "94": 0,
+      "95": 0,
+      "96": 0,
+      "97": 0,
+      "98": 0,
+      "99": 0,
+      "100": 0,
+      "101": 0,
+      "102": 0,
+      "103": 0,
       "104": 1
     },
     "f": {
-      "0": 29,
+      "0": 0,
       "1": 0,
       "2": 0,
-      "3": 29,
+      "3": 0,
       "4": 0,
       "5": 1,
-      "6": 1,
-      "7": 1,
+      "6": 0,
+      "7": 0,
       "8": 0,
       "9": 0,
       "10": 0,
       "11": 0,
-      "12": 1,
+      "12": 0,
       "13": 0,
-      "14": 1,
-      "15": 29
+      "14": 0,
+      "15": 0
     },
     "b": {
       "0": [
-        1,
-        28
+        0,
+        0
       ],
       "1": [
         0,
@@ -14451,20 +14451,20 @@
         0
       ],
       "4": [
-        1,
-        28
+        0,
+        0
       ],
       "5": [
-        28,
-        1
+        0,
+        0
       ],
       "6": [
         0,
-        1
+        0
       ],
       "7": [
         0,
-        1
+        0
       ],
       "8": [
         0,
@@ -14472,31 +14472,31 @@
       ],
       "9": [
         0,
-        1
+        0
       ],
       "10": [
         0,
-        1
+        0
       ],
       "11": [
         0,
-        1
+        0
       ],
       "12": [
         0,
-        1
+        0
       ],
       "13": [
-        1,
-        1
+        0,
+        0
       ],
       "14": [
-        1,
-        28
+        0,
+        0
       ],
       "15": [
-        28,
-        1
+        0,
+        0
       ]
     },
     "inputSourceMap": {
@@ -14563,11 +14563,11 @@
       ],
       "sourcesContent": [
         "import { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\nimport { MatSnackBar } from '@angular/material/snack-bar';\r\nimport { ActivatedRoute, Router } from '@angular/router';\r\nimport { SessionService } from '../../../../services/session.service';\r\nimport { TeacherService } from '../../../../services/teacher.service';\r\nimport { Session } from '../../interfaces/session.interface';\r\nimport { SessionApiService } from '../../services/session-api.service';\r\n\r\n@Component({\r\n  selector: 'app-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss']\r\n})\r\nexport class FormComponent implements OnInit {\r\n\r\n  public onUpdate: boolean = false;\r\n  public sessionForm: FormGroup | undefined;\r\n  public teachers$ = this.teacherService.all();\r\n  private id: string | undefined;\r\n\r\n  constructor(\r\n    private route: ActivatedRoute,\r\n    private fb: FormBuilder,\r\n    private matSnackBar: MatSnackBar,\r\n    private sessionApiService: SessionApiService,\r\n    private sessionService: SessionService,\r\n    private teacherService: TeacherService,\r\n    private router: Router\r\n  ) {\r\n  }\r\n\r\n  public ngOnInit(): void {\r\n    if (!this.sessionService.sessionInformation!.admin) {\r\n      this.router.navigate(['/sessions']);\r\n    }\r\n    const url = this.router.url;\r\n    if (url.includes('update')) {\r\n      this.onUpdate = true;\r\n      this.id = this.route.snapshot.paramMap.get('id')!;\r\n      this.sessionApiService\r\n        .detail(this.id)\r\n        .subscribe((session: Session) => this.initForm(session));\r\n    } else {\r\n      this.initForm();\r\n    }\r\n  }\r\n\r\n  public submit(): void {\r\n    const session = this.sessionForm?.value as Session;\r\n\r\n    if (!this.onUpdate) {\r\n      this.sessionApiService\r\n        .create(session)\r\n        .subscribe((_: Session) => this.exitPage('Session created !'));\r\n    } else {\r\n      this.sessionApiService\r\n        .update(this.id!, session)\r\n        .subscribe((_: Session) => this.exitPage('Session updated !'));\r\n    }\r\n  }\r\n\r\n  private initForm(session?: Session): void {\r\n    this.sessionForm = this.fb.group({\r\n      name: [\r\n        session ? session.name : '',\r\n        [Validators.required]\r\n      ],\r\n      date: [\r\n        session ? new Date(session.date).toISOString().split('T')[0] : '',\r\n        [Validators.required]\r\n      ],\r\n      teacher_id: [\r\n        session ? session.teacher_id : '',\r\n        [Validators.required]\r\n      ],\r\n      description: [\r\n        session ? session.description : '',\r\n        [\r\n          Validators.required,\r\n          Validators.max(2000)\r\n        ]\r\n      ],\r\n    });\r\n  }\r\n\r\n  private exitPage(message: string): void {\r\n    this.matSnackBar.open(message, 'Close', { duration: 3000 });\r\n    this.router.navigate(['sessions']);\r\n  }\r\n}\r\n",
-        "<div class=\"create m3\">\r\n  <mat-card>\r\n    <mat-card-title>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n        <button mat-icon-button routerLink=\"/sessions\">\r\n          <mat-icon>arrow_back</mat-icon>\r\n        </button>\r\n        <h1 *ngIf=\"!onUpdate\">Create session</h1>\r\n        <h1 *ngIf=\"onUpdate\">Update session</h1>\r\n      </div>\r\n    </mat-card-title>\r\n    <mat-card-content *ngIf=\"sessionForm\">\r\n      <form class=\"mt2\" fxLayout=\"column\" [formGroup]=\"sessionForm\" (ngSubmit)=\"submit()\">\r\n        <mat-form-field appearance=\"outline\" class=\"\" fxFlex>\r\n          <mat-label>Name</mat-label>\r\n          <input matInput formControlName=\"name\">\r\n        </mat-form-field>\r\n        <mat-form-field appearance=\"outline\" fxFlex>\r\n          <mat-label>Date</mat-label>\r\n          <input matInput type=\"date\" formControlName=\"date\">\r\n        </mat-form-field>\r\n        <mat-form-field appearance=\"outline\">\r\n          <mat-label>Teacher</mat-label>\r\n          <mat-select ngDefaultControl formControlName=\"teacher_id\" id=\"teacher\">\r\n            <mat-option *ngFor=\"let teacher of teachers$ | async\" [value]=\"teacher.id\">\r\n              {{teacher.firstName}} {{teacher.lastName}}\r\n            </mat-option>\r\n          </mat-select>\r\n        </mat-form-field>\r\n        <mat-form-field appearance=\"outline\" fxFlex>\r\n          <mat-label>Description</mat-label>\r\n          <textarea matInput rows=\"8\" formControlName=\"description\"></textarea>\r\n        </mat-form-field>\r\n        <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n          <button mat-raised-button color=\"primary\" type=\"submit\" [disabled]=\"sessionForm.invalid\">\r\n            Save\r\n          </button>\r\n        </div>\r\n      </form>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</div>\r\n"
+        "<div class=\"create m3\">\r\n  <mat-card>\r\n    <mat-card-title>\r\n      <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\r\n        <button mat-icon-button routerLink=\"/sessions\">\r\n          <mat-icon>arrow_back</mat-icon>\r\n        </button>\r\n        <h1 *ngIf=\"!onUpdate\">Create session</h1>\r\n        <h1 *ngIf=\"onUpdate\">Update session</h1>\r\n      </div>\r\n    </mat-card-title>\r\n    <mat-card-content *ngIf=\"sessionForm\">\r\n      <form class=\"mt2\" fxLayout=\"column\" [formGroup]=\"sessionForm\" (ngSubmit)=\"submit()\">\r\n        <mat-form-field appearance=\"outline\" class=\"\" fxFlex>\r\n          <mat-label>Name</mat-label>\r\n          <input matInput formControlName=\"name\">\r\n        </mat-form-field>\r\n        <mat-form-field appearance=\"outline\" fxFlex>\r\n          <mat-label>Date</mat-label>\r\n          <input matInput type=\"date\" formControlName=\"date\">\r\n        </mat-form-field>\r\n        <mat-form-field appearance=\"outline\">\r\n          <mat-label>Teacher</mat-label>\r\n          <mat-select ngDefaultControl formControlName=\"teacher_id\" id=\"teacher\">\r\n            <mat-option *ngFor=\"let teacher of teachers$ | async\" [value]=\"teacher.id\">\r\n              {{teacher.firstName}} {{teacher.lastName}}\r\n            </mat-option>\r\n          </mat-select>\r\n        </mat-form-field>\r\n        <mat-form-field appearance=\"outline\" fxFlex>\r\n          <mat-label>Description</mat-label>\r\n          <textarea matInput rows=\"8\" formControlName=\"description\"></textarea>\r\n        </mat-form-field>\r\n        <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n          <button mat-raised-button color=\"primary\" type=\"submit\" [disabled]=\"sessionForm.invalid \" id=\"save\">\r\n            Save\r\n          </button>\r\n        </div>\r\n      </form>\r\n    </mat-card-content>\r\n  </mat-card>\r\n</div>\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "345e365ae2b68f5cf982f22f3dbfe9debc1b3b4f"
+    "hash": "d6068d8a390a423b0d031235b2105bd9b6c22828"
   },
   "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts": {
     "path": "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts",
@@ -14709,7 +14709,7 @@
         },
         "end": {
           "line": 31,
-          "column": 36
+          "column": 37
         }
       },
       "14": {
@@ -14959,7 +14959,7 @@
         },
         "end": {
           "line": 64,
-          "column": 37
+          "column": 38
         }
       },
       "39": {
@@ -15914,59 +15914,59 @@
       "5": 1,
       "6": 1,
       "7": 1,
-      "8": 0,
-      "9": 0,
-      "10": 0,
-      "11": 0,
-      "12": 0,
-      "13": 0,
-      "14": 0,
-      "15": 0,
-      "16": 0,
-      "17": 0,
-      "18": 0,
+      "8": 2,
+      "9": 6,
+      "10": 2,
+      "11": 2,
+      "12": 2,
+      "13": 2,
+      "14": 2,
+      "15": 2,
+      "16": 6,
+      "17": 4,
+      "18": 4,
       "19": 1,
-      "20": 0,
-      "21": 0,
-      "22": 0,
-      "23": 0,
-      "24": 0,
-      "25": 0,
-      "26": 0,
-      "27": 0,
-      "28": 0,
-      "29": 0,
-      "30": 0,
-      "31": 0,
-      "32": 0,
-      "33": 0,
-      "34": 0,
-      "35": 0,
-      "36": 0,
-      "37": 0,
-      "38": 0,
-      "39": 0,
-      "40": 0,
-      "41": 0,
-      "42": 0,
-      "43": 0,
-      "44": 0,
-      "45": 0,
-      "46": 0,
-      "47": 0,
-      "48": 0,
-      "49": 0,
-      "50": 0,
-      "51": 0,
-      "52": 0,
-      "53": 0,
-      "54": 0,
-      "55": 0,
+      "20": 2,
+      "21": 6,
+      "22": 2,
+      "23": 2,
+      "24": 2,
+      "25": 2,
+      "26": 2,
+      "27": 2,
+      "28": 2,
+      "29": 2,
+      "30": 2,
+      "31": 2,
+      "32": 2,
+      "33": 2,
+      "34": 2,
+      "35": 2,
+      "36": 2,
+      "37": 2,
+      "38": 2,
+      "39": 2,
+      "40": 2,
+      "41": 2,
+      "42": 2,
+      "43": 6,
+      "44": 4,
+      "45": 4,
+      "46": 4,
+      "47": 4,
+      "48": 4,
+      "49": 4,
+      "50": 4,
+      "51": 4,
+      "52": 4,
+      "53": 4,
+      "54": 4,
+      "55": 4,
       "56": 1,
       "57": 1,
       "58": 1,
       "59": 1,
-      "60": 4,
+      "60": 8,
       "61": 1,
       "62": 1,
       "63": 1,
@@ -15989,13 +15989,13 @@
     },
     "f": {
       "0": 5,
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0,
+      "1": 2,
+      "2": 6,
+      "3": 2,
+      "4": 6,
       "5": 1,
       "6": 1,
-      "7": 4,
+      "7": 8,
       "8": 1,
       "9": 5
     },
@@ -16005,20 +16005,20 @@
         4
       ],
       "1": [
-        0,
-        0
+        2,
+        4
       ],
       "2": [
-        0,
-        0
+        4,
+        2
       ],
       "3": [
-        0,
-        0
+        2,
+        4
       ],
       "4": [
-        0,
-        0
+        4,
+        2
       ],
       "5": [
         1,
@@ -16035,7 +16035,7 @@
     },
     "inputSourceMap": {
       "version": 3,
-      "mappings": ";;;;;;;;;;;;IAIMA,kCAKC,CALD,EAKC,UALD;IAMYA;IAAGA;IACbA;IAAkBA;IAAMA;;;;;;;;;;IA4BtBA,mCAKC,CALD,EAKC,UALD;IAMYA;IAAIA;IACdA;IAAkBA;IAAIA;;;;;IAHtBA;;;;;;;;;;IA5BNA,oCAAwE,CAAxE,EAAwE,iBAAxE,EAAwE,CAAxE,EAAwE,gBAAxE;IAEoBA;IAAkBA;IAClCA;IACEA;;IACFA;IAEFA;IACEA;IACFA;IACAA,yCAAkB,EAAlB,EAAkB,GAAlB;IAEIA;IACFA;IAEFA,0CAAkB,EAAlB,EAAkB,QAAlB,EAAkB,EAAlB,EAAkB,EAAlB,EAAkB,UAAlB;IAMcA;IAAMA;IAChBA;IAAkBA;IAAMA;IAE1BA;IASFA;;;;;;IA/BkBA;IAAAA;IAEdA;IAAAA;IAQAA;IAAAA;IAOAA;IAAAA;IAMCA;IAAAA;;;;AC5Bb,WAAaC,aAAb;EAAM,MAAOA,aAAP,CAAoB;IAIxBC,YACUC,cADV,EAEUC,iBAFV,EAE8C;MADpC;MACA;MAJH,iBAAmC,KAAKA,iBAAL,CAAuBC,GAAvB,EAAnC;IAKF;;IAEG,IAAJC,IAAI;MACN,OAAO,KAAKH,cAAL,CAAoBI,kBAA3B;IACD;;EAXuB;;;qBAAbN,eAAaD;EAAA;;;UAAbC;IAAaO;IAAAC;IAAAC;IAAAC;IAAAC;MAAA;QDZ1BZ,+BAAkB,CAAlB,EAAkB,UAAlB,EAAkB,CAAlB,EAAkB,iBAAlB,EAAkB,CAAlB,EAAkB,CAAlB,EAAkB,gBAAlB,EAAkB,CAAlB;QAGiCA;QAAkBA;QAC7CA;QASFA;QACAA;QACEA;;QAmCFA;;;;QA7CKA;QAAAA;QAUwCA;QAAAA;;;;;;ECHjD,OAAaC,aAAb;AAAA",
+      "mappings": ";;;;;;;;;;;;IAIMA,kCAKC,CALD,EAKC,UALD;IAMYA;IAAGA;IACbA;IAA8BA;IAAMA;;;;;;;;;;IA4BlCA,mCAKC,CALD,EAKC,UALD;IAMYA;IAAIA;IACdA;IAAkBA;IAAIA;;;;;IAHtBA;;;;;;;;;;IA5BNA,oCAAwE,CAAxE,EAAwE,iBAAxE,EAAwE,CAAxE,EAAwE,gBAAxE;IAEoBA;IAAkBA;IAClCA;IACEA;;IACFA;IAEFA;IACEA;IACFA;IACAA,yCAAkB,EAAlB,EAAkB,GAAlB;IAEIA;IACFA;IAEFA,0CAAkB,EAAlB,EAAkB,QAAlB,EAAkB,EAAlB,EAAkB,EAAlB,EAAkB,UAAlB;IAMcA;IAAMA;IAChBA;IAAkBA;IAAMA;IAE1BA;IASFA;;;;;;IA/BkBA;IAAAA;IAEdA;IAAAA;IAQAA;IAAAA;IAOAA;IAAAA;IAMCA;IAAAA;;;;AC5Bb,WAAaC,aAAb;EAAM,MAAOA,aAAP,CAAoB;IAIxBC,YACUC,cADV,EAEUC,iBAFV,EAE8C;MADpC;MACA;MAJH,iBAAmC,KAAKA,iBAAL,CAAuBC,GAAvB,EAAnC;IAKF;;IAEG,IAAJC,IAAI;MACN,OAAO,KAAKH,cAAL,CAAoBI,kBAA3B;IACD;;EAXuB;;;qBAAbN,eAAaD;EAAA;;;UAAbC;IAAaO;IAAAC;IAAAC;IAAAC;IAAAC;MAAA;QDZ1BZ,+BAAkB,CAAlB,EAAkB,UAAlB,EAAkB,CAAlB,EAAkB,iBAAlB,EAAkB,CAAlB,EAAkB,CAAlB,EAAkB,gBAAlB,EAAkB,CAAlB;QAGiCA;QAAkBA;QAC7CA;QASFA;QACAA;QACEA;;QAmCFA;;;;QA7CKA;QAAAA;QAUwCA;QAAAA;;;;;;ECHjD,OAAaC,aAAb;AAAA",
       "names": [
         "i0",
         "ListComponent",
@@ -16057,12 +16057,12 @@
         "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\features\\sessions\\components\\list\\list.component.ts"
       ],
       "sourcesContent": [
-        "<div class=\"list\">\r\n  <mat-card>\r\n    <mat-card-header fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n      <mat-card-title class=\"m0\">Sessions available</mat-card-title>\r\n      <button\r\n        *ngIf=\"user!.admin\"\r\n        mat-raised-button\r\n        color=\"primary\"\r\n        routerLink=\"create\"\r\n      >\r\n        <mat-icon>add</mat-icon>\r\n        <span class=\"ml1\">Create</span>\r\n      </button>\r\n    </mat-card-header>\r\n    <div class=\"items mt2\" fxLayout=\"row wrap\" fxLayout.lt-md=\"column\">\r\n      <mat-card class=\"item\" *ngFor=\"let session of sessions$ | async\" fxFlex>\r\n        <mat-card-header>\r\n          <mat-card-title>{{ session.name }}</mat-card-title>\r\n          <mat-card-subtitle>\r\n            Session on {{ session.date | date : \"longDate\" }}\r\n          </mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div mat-card-image fxLayoutAlign=\"center center\">\r\n          <img class=\"picture\" src=\"assets/sessions.png\" alt=\"Yoga session\" />\r\n        </div>\r\n        <mat-card-content>\r\n          <p>\r\n            {{ session.description }}\r\n          </p>\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n          <button\r\n            mat-raised-button\r\n            color=\"primary\"\r\n            [routerLink]=\"['detail', session.id]\"\r\n          >\r\n            <mat-icon>search</mat-icon>\r\n            <span class=\"ml1\">Detail</span>\r\n          </button>\r\n          <button\r\n            *ngIf=\"user!.admin\"\r\n            mat-raised-button\r\n            color=\"primary\"\r\n            [routerLink]=\"['update', session.id]\"\r\n          >\r\n            <mat-icon>edit</mat-icon>\r\n            <span class=\"ml1\">Edit</span>\r\n          </button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </div>\r\n  </mat-card>\r\n</div>\r\n",
+        "<div class=\"list\">\r\n  <mat-card>\r\n    <mat-card-header fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n      <mat-card-title class=\"m0\">Sessions available</mat-card-title>\r\n      <button\r\n        *ngIf=\"user!.admin\"\r\n        mat-raised-button\r\n        color=\"primary\"\r\n        routerLink=\"create\"\r\n      >\r\n        <mat-icon>add</mat-icon>\r\n        <span class=\"ml1\" id=\"create\">Create</span>\r\n      </button>\r\n    </mat-card-header>\r\n    <div class=\"items mt2\" fxLayout=\"row wrap\" fxLayout.lt-md=\"column\">\r\n      <mat-card class=\"item\" *ngFor=\"let session of sessions$ | async\" fxFlex>\r\n        <mat-card-header>\r\n          <mat-card-title>{{ session.name }}</mat-card-title>\r\n          <mat-card-subtitle>\r\n            Session on {{ session.date | date : \"longDate\" }}\r\n          </mat-card-subtitle>\r\n        </mat-card-header>\r\n        <div mat-card-image fxLayoutAlign=\"center center\">\r\n          <img class=\"picture\" src=\"assets/sessions.png\" alt=\"Yoga session\" />\r\n        </div>\r\n        <mat-card-content>\r\n          <p>\r\n            {{ session.description }}\r\n          </p>\r\n        </mat-card-content>\r\n        <mat-card-actions>\r\n          <button\r\n            mat-raised-button\r\n            color=\"primary\"\r\n            [routerLink]=\"['detail', session.id]\"\r\n          >\r\n            <mat-icon>search</mat-icon>\r\n            <span class=\"ml1\">Detail</span>\r\n          </button>\r\n          <button\r\n            *ngIf=\"user!.admin\"\r\n            mat-raised-button\r\n            color=\"primary\"\r\n            [routerLink]=\"['update', session.id]\"\r\n          >\r\n            <mat-icon>edit</mat-icon>\r\n            <span class=\"ml1\">Edit</span>\r\n          </button>\r\n        </mat-card-actions>\r\n      </mat-card>\r\n    </div>\r\n  </mat-card>\r\n</div>\r\n",
         "import { Component } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { SessionInformation } from '../../../../interfaces/sessionInformation.interface';\r\nimport { SessionService } from '../../../../services/session.service';\r\nimport { Session } from '../../interfaces/session.interface';\r\nimport { SessionApiService } from '../../services/session-api.service';\r\n\r\n@Component({\r\n  selector: 'app-list',\r\n  templateUrl: './list.component.html',\r\n  styleUrls: ['./list.component.scss']\r\n})\r\nexport class ListComponent {\r\n\r\n  public sessions$: Observable<Session[]> = this.sessionApiService.all();\r\n\r\n  constructor(\r\n    private sessionService: SessionService,\r\n    private sessionApiService: SessionApiService\r\n  ) { }\r\n\r\n  get user(): SessionInformation | undefined {\r\n    return this.sessionService.sessionInformation;\r\n  }\r\n}\r\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "5e793711fba6d3c0abb1448f621ff58b9487151d"
+    "hash": "1919fce2bf39d42f26e49e1e511be1ab8aa9cafe"
   },
   "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\features\\sessions\\sessions-routing.module.ts": {
     "path": "D:\\sirine\\openclassrooms\\projet_5\\Testez-une-application-full-stack\\front\\src\\app\\features\\sessions\\sessions-routing.module.ts",

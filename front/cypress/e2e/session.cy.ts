@@ -1,21 +1,54 @@
+///<reference types="Cypress"/>
 describe('Sessions spec', () => {
-    it('add session', () => {
+    beforeEach(() => {
+
         cy.login('yoga@studio.com','test!1234');
-        cy.get('.ml1').click();
+        cy.intercept(
+            {
+              method: 'GET',
+              url: '/api/teacher',
+            },
+            [  {
+                "id": 1,
+                "lastName": "DELAHAYE",
+                "firstName": "Margot",
+                "createdAt": "2024-01-16T11:34:03",
+                "updatedAt": "2024-01-16T11:34:03"
+            },
+            {
+                "id": 2,
+                "lastName": "THIERCELIN",
+                "firstName": "Hélène",
+                "createdAt": "2024-01-16T11:34:03",
+                "updatedAt": "2024-01-16T11:34:03"
+            }]).as('teacher')
+      
+      })
+    
+    it('add session', () => {
+     
+        cy.get('#create').click();
         cy.url().should('include','/create');
         cy.get('input[formControlName=name]').type("yoga");
-        cy.get('input[formControlName=date]').type('2009-12-12');
-        cy.get('#teacher').click();
-        cy.get('mat-select').each(function($element,index,list){
-            if($element.text()==="DELAHAYE Margot") {
-                cy.wrap($element).click();
-            }else{
-                cy.log("still searching");
-                
-            }
-        })
-        //cy.get('input[formControlName=teacher_id]').select(0).invoke("val").should("eq", "DELAHAYE Margot");
-        cy.get('input[formControlName=description]').type("yoga");
-        cy.get('button').click();
+        cy.get('input[formControlName=date]').type('2024-02-12');
+        cy.get('mat-select[formControlName=teacher_id]')
+            .click()
+            .get('mat-option')
+            .contains('DELAHAYE')
+            .click();
+        
+        cy.get('textarea[formControlName=description]').type("yoga");
+        cy.intercept('POST', '/api/session', {
+            body: {
+              name: 'yoga',
+              date: '2024-02-12',
+              description: 'yoga',
+              teacher_id: 1,
+              users:[1]
+            },
+          })
+        cy.get('#save').click();
+        cy.url().should('include','/session');
     })
+
 })

@@ -27,7 +27,26 @@
         method: 'GET',
         url: '/api/session',
       },
-      []).as('session')
+      [  {
+        "id": 1,
+        "name": "Basic Asana",
+        "date": "2024-01-17T00:00:00.000+00:00",
+        "teacher_id": 1,
+        "description": "Traditional yoga : 41 Basic Asana, standing and Sitting poses.",
+        "users": [],
+        "createdAt": "2024-01-16T23:11:25",
+        "updatedAt": "2024-01-16T23:11:25"
+    },
+    {
+        "id": 2,
+        "name": "Gentle Yoga",
+        "date": "2024-01-29T00:00:00.000+00:00",
+        "teacher_id": 1,
+        "description": "Gentle yoga for beginners",
+        "users": [],
+        "createdAt": "2024-01-28T18:30:51",
+        "updatedAt": "2024-01-28T18:30:51"
+    }]).as('session')
 
     cy.get('input[formControlName=email]').type(email)
     cy.get('input[formControlName=password]').type(`${password}{enter}{enter}`)
