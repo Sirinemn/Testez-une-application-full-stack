@@ -1,4 +1,4 @@
-package com.openclassrooms.service;
+package com.openclassrooms.starterjwt.unittest;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.doNothing;
@@ -25,7 +25,7 @@ import com.openclassrooms.starterjwt.repository.UserRepository;
 import com.openclassrooms.starterjwt.services.SessionService;
 
 @ExtendWith(MockitoExtension.class)
-public class SessoinServiceTests {
+ class SessoinServiceTests {
 	
 	@InjectMocks
 	private SessionService sessionServiceMock;
@@ -35,7 +35,7 @@ public class SessoinServiceTests {
 	private UserRepository userRepository;
 	
 	@Test
-	void CreateSessionTest() {
+	void shouldCreateSessionTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
 		Date date = new Date();
 		Session session = Session.builder().name("test").date(date)
@@ -47,13 +47,13 @@ public class SessoinServiceTests {
 	}
 	
 	@Test
-	void DeleteSessionTest() {
+	void shouldDeleteSessionTest() {
         doNothing().when(sessionRepository).deleteById(1L);
 		sessionServiceMock.delete(1L);
         assertAll(() -> sessionServiceMock.delete(1L));
 	}
 	@Test
-	void GetAllSessionTest() {
+	void shouldGetAllSessionTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
 		Date date = new Date();
 		Session session = Session.builder().name("test").date(date)
@@ -67,7 +67,7 @@ public class SessoinServiceTests {
 
 	}
 	@Test
-	void GetSessionByIdTest() {
+	void shouldGetSessionByIdTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
 		Date date = new Date();
 		Session session = Session.builder().name("test").date(date)
@@ -77,7 +77,7 @@ public class SessoinServiceTests {
 		Assertions.assertThat(sessionServiceMock.getById(1L)).isNotNull();
 	}
 	@Test
-	void UpdateSessionByIdTest() {
+	void shouldUpdateSessionByIdTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
 		Date date = new Date();
 		Session session = Session.builder().name("test").date(date)

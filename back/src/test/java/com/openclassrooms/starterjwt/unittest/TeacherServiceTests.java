@@ -1,4 +1,4 @@
-package com.openclassrooms.service;
+package com.openclassrooms.starterjwt.unittest;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -29,7 +29,7 @@ import com.openclassrooms.starterjwt.services.TeacherService;
 	private TeacherRepository repository;
 
 	@Test
-	 void getTeachersTest() {
+	 void shouldGetAllTeachersTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
 		Teacher teacher = Teacher.builder().id(10L).firstName("test").lastName("test").createdAt(rightNow)
 				.updatedAt(rightNow).build();
@@ -41,7 +41,7 @@ import com.openclassrooms.starterjwt.services.TeacherService;
 	}
 
 	@Test
-	 void getTeacherByIdTest() {
+	 void shouldGetTeacherByIdTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
 		Teacher teacher = Teacher.builder().id(10L).firstName("test").lastName("test").createdAt(rightNow)
 				.updatedAt(rightNow).build();

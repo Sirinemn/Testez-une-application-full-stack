@@ -1,4 +1,4 @@
-package com.openclassrooms.service;
+package com.openclassrooms.starterjwt.unittest;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.Mockito.doNothing;
@@ -34,7 +34,7 @@ public class UserServiceTests {
 	}
 	
 	@Test
-	public void getUserTest() {
+	public void shouldGetUserTest() {
 		LocalDateTime rightNow = LocalDateTime.now();
 		User user = User.builder().id((long) 10).email("test@mail.fr").firstName("test").lastName("test").password("test123").admin(true).createdAt(rightNow)
 				.updatedAt(rightNow).build();
@@ -44,7 +44,7 @@ public class UserServiceTests {
 
 		}
 	@Test
-	void DeleteUserTest() {
+	void shouldDeleteUserTest() {
         doNothing().when(repository).deleteById(1L);
 		service.delete(1L);
         assertAll(() -> service.delete(1L));

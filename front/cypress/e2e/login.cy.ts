@@ -3,6 +3,7 @@ describe('Login spec', () => {
     cy.login('yoga@studio.com','test!1234');
 
     cy.url().should('include', '/sessions')
+    
     cy.pause();
 
     })
@@ -15,6 +16,5 @@ describe('Login spec', () => {
 
     cy.contains('An error occurred')
 
-    //cy.url().should('not include', '/sessions')
   })
 });
