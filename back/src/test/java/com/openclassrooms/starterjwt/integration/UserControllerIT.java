@@ -56,7 +56,7 @@ public class UserControllerIT {
 	}
 	@Test
 	@WithMockUser(roles = "USER",authorities = {
-    "ROLE_ADMIN" })
+    "ADMIN" })
 	void shouldDeleteUser() throws Exception {
 		
 		LocalDateTime rightNow = LocalDateTime.now();
