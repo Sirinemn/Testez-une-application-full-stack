@@ -45,7 +45,8 @@ import com.openclassrooms.starterjwt.services.TeacherService;
 				.firstName("test1")
 				.lastName("test1")
 				.createdAt(rightNow)
-				.updatedAt(rightNow).build();
+				.updatedAt(rightNow)
+				.build();
 		when(repository.findAll()).thenReturn(Stream.of(initialTeacher, teacher).collect(Collectors.toList()));
 		Assertions.assertThat(service.findAll().size()).isEqualTo(2);
 		verify(repository, times(1)).findAll();
