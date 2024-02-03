@@ -29,8 +29,8 @@ import com.openclassrooms.starterjwt.repository.UserRepository;
 import com.openclassrooms.starterjwt.services.SessionService;
 
 @ExtendWith(MockitoExtension.class)
- class SessoinServiceTests {
-	
+class SessoinServiceTests {
+
 	@InjectMocks
 	private SessionService sessionServiceMock;
 	@Mock
@@ -38,105 +38,101 @@ import com.openclassrooms.starterjwt.services.SessionService;
 	@Mock
 	private UserRepository userRepository;
 	
+	LocalDateTime rightNow = LocalDateTime.now();
+	Date date = new Date();
+
+	final User initialUser = User.builder()
+			.id(1L)
+			.email("participant@mail.fr")
+			.firstName("participant")
+			.lastName("participant")
+			.password("participant123")
+			.admin(true).createdAt(rightNow)
+			.updatedAt(rightNow)
+			.build();
+	List<User> participationList = new ArrayList<User>() {{add(initialUser);}};
+	final Session initialSession = Session.builder()
+			.id(1L)
+			.name("test")
+			.date(date)
+			.description("description test")
+			.createdAt(rightNow)
+			.teacher(null)
+			.updatedAt(rightNow)
+			.users(participationList)
+			.build();
+
 	@Test
 	void shouldCreateSessionTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
-		when(sessionRepository.save(session)).thenReturn(session);
-		sessionServiceMock.create(session);
-		verify(sessionRepository, times(1)).save(session);
-	}
 	
+		when(sessionRepository.save(initialSession)).thenReturn(initialSession);
+		sessionServiceMock.create(initialSession);
+		verify(sessionRepository, times(1)).save(initialSession);
+	}
+
 	@Test
 	void shouldDeleteSessionTest() {
-        doNothing().when(sessionRepository).deleteById(1L);
+		doNothing().when(sessionRepository).deleteById(1L);
 		sessionServiceMock.delete(1L);
-        assertAll(() -> sessionServiceMock.delete(1L));
+		assertAll(() -> sessionServiceMock.delete(1L));
 	}
+
 	@Test
 	void shouldGetAllSessionTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
+		Session session = Session.builder().name("test").date(date).description("description test").createdAt(rightNow)
 				.teacher(null).updatedAt(rightNow).users(null).build();
-		Session session1 = Session.builder().name("test1").date(date)
-				.description("description test1").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
-		when(sessionRepository.findAll()).thenReturn(Stream.of(session, session1).collect(Collectors.toList()));
+
+		when(sessionRepository.findAll()).thenReturn(Stream.of(session, initialSession).collect(Collectors.toList()));
 		Assertions.assertThat(sessionServiceMock.findAll().size()).isEqualTo(2);
 
 	}
+
 	@Test
 	void shouldGetSessionByIdTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
-		when(sessionRepository.findById(1L)).thenReturn(Optional.of(session));
+		
+		when(sessionRepository.findById(1L)).thenReturn(Optional.of(initialSession));
 		Assertions.assertThat(sessionServiceMock.getById(1L)).isNotNull();
 	}
+
 	@Test
 	void shouldUpdateSessionByIdTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
-		when(sessionRepository.save(session)).thenReturn(session);
-        Assertions.assertThat(sessionServiceMock.update(1L, session)).isNotNull();
+	
+		when(sessionRepository.save(initialSession)).thenReturn(initialSession);
+        Assertions.assertThat(sessionServiceMock.update(1L, initialSession)).isNotNull();
 	}
+
 	@Test
 	void shouldAddParticipationToSessionTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		User participant = User.builder().id(1L).email("participant@mail.fr").firstName("participant")
-				.lastName("participant").password("participant123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		List<User> participationList = new ArrayList<User>() {{add(participant);}} ;
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(participationList).build();
+
 		User user = User.builder().email("test@mail.fr").firstName("firstName")
 				.lastName("lastName").password("test123")
 				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
 		Long userId = user.getId();
-		Long sessionId = session.getId();
+		Long sessionId = initialSession.getId();
 
-		when(sessionRepository.save(session)).thenReturn(session);
+		when(sessionRepository.save(initialSession)).thenReturn(initialSession);
 		when(userRepository.findById(userId)).thenReturn(Optional.of(user));
-		when(sessionRepository.findById(sessionId)).thenReturn(Optional.of(session));
-		
-        sessionServiceMock.participate(sessionId, userId);
-        assertThat(session.getUsers().size()).isEqualTo(2);
-		verify(sessionRepository, times(1)).save(session);
+		when(sessionRepository.findById(sessionId)).thenReturn(Optional.of(initialSession));
+
+		sessionServiceMock.participate(sessionId, userId);
+		assertThat(initialSession.getUsers().size()).isEqualTo(2);
+		verify(sessionRepository, times(1)).save(initialSession);
 
 	}
+
 	@Test
 	void shouldCancelParticipationToSessionTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		User participant = User.builder().id(1L).email("participant@mail.fr").firstName("participant")
-				.lastName("participant").password("participant123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		List<User> participationList = new ArrayList<User>() {{add(participant);}} ;
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(participationList).build();
 	
-		Long participantId = participant.getId();
-		Long sessionId = session.getId();
 
-		when(sessionRepository.save(session)).thenReturn(session);
-		when(sessionRepository.findById(sessionId)).thenReturn(Optional.of(session));
-		
-        sessionServiceMock.noLongerParticipate(sessionId, participantId);
-        assertThat(session.getUsers().size()).isEqualTo(0);
-		verify(sessionRepository, times(1)).save(session);
+		Long participantId = initialUser.getId();
+		Long sessionId = initialSession.getId();
+
+		when(sessionRepository.save(initialSession)).thenReturn(initialSession);
+		when(sessionRepository.findById(sessionId)).thenReturn(Optional.of(initialSession));
+
+		sessionServiceMock.noLongerParticipate(sessionId, participantId);
+		assertThat(initialSession.getUsers().size()).isEqualTo(0);
+		verify(sessionRepository, times(1)).save(initialSession);
 
 	}
 

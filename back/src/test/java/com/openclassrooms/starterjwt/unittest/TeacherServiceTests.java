@@ -27,25 +27,34 @@ import com.openclassrooms.starterjwt.services.TeacherService;
 	private TeacherService service;
 	@Mock
 	private TeacherRepository repository;
+	
+	LocalDateTime rightNow = LocalDateTime.now();
+	Teacher initialTeacher = Teacher.builder()
+			.id(10L)
+			.firstName("test")
+			.lastName("test")
+			.createdAt(rightNow)
+			.updatedAt(rightNow)
+			.build();
 
 	@Test
 	 void shouldGetAllTeachersTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Teacher teacher = Teacher.builder().id(10L).firstName("test").lastName("test").createdAt(rightNow)
+		
+		Teacher teacher = Teacher.builder()
+				.id(11L)
+				.firstName("test1")
+				.lastName("test1")
+				.createdAt(rightNow)
 				.updatedAt(rightNow).build();
-		Teacher teacher1 = Teacher.builder().id(11L).firstName("test1").lastName("test1").createdAt(rightNow)
-				.updatedAt(rightNow).build();
-		when(repository.findAll()).thenReturn(Stream.of(teacher, teacher1).collect(Collectors.toList()));
+		when(repository.findAll()).thenReturn(Stream.of(initialTeacher, teacher).collect(Collectors.toList()));
 		Assertions.assertThat(service.findAll().size()).isEqualTo(2);
 		verify(repository, times(1)).findAll();
 	}
 
 	@Test
 	 void shouldGetTeacherByIdTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Teacher teacher = Teacher.builder().id(10L).firstName("test").lastName("test").createdAt(rightNow)
-				.updatedAt(rightNow).build();
-		when(repository.findById((long) 10)).thenReturn(Optional.of(teacher));
+	
+		when(repository.findById((long) 10)).thenReturn(Optional.of(initialTeacher));
 		Assertions.assertThat(service.findById(10L)).isNotNull();
 		verify(repository).findById(10L);
 	}

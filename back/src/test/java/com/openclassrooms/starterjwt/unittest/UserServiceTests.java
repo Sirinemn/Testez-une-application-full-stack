@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,25 +27,31 @@ public class UserServiceTests {
 	private UserService service;
 	@Mock
 	private UserRepository repository;
-	@BeforeEach
-	public void init() {
-		service = new UserService(repository);
-	}
+
+	LocalDateTime rightNow = LocalDateTime.now();
+	User initialUser = User.builder()
+			.id(10L)
+			.email("test@mail.fr")
+			.firstName("test")
+			.lastName("test")
+			.password("test123")
+			.admin(true)
+			.createdAt(rightNow)
+			.updatedAt(rightNow)
+			.build();
 	
 	@Test
 	public void shouldGetUserTest() {
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().id((long) 10).email("test@mail.fr").firstName("test").lastName("test").password("test123").admin(true).createdAt(rightNow)
-				.updatedAt(rightNow).build();
-		when(repository.findById((long) 10)).thenReturn(Optional.of(user));
-		Assertions.assertThat(service.findById((long) 10)).isNotNull();
+		
+		when(repository.findById(10L)).thenReturn(Optional.of(initialUser));
+		Assertions.assertThat(service.findById(10L)).isNotNull();
 		verify(repository).findById(10L);
 
 		}
 	@Test
 	void shouldDeleteUserTest() {
-        doNothing().when(repository).deleteById(1L);
-		service.delete(1L);
-        assertAll(() -> service.delete(1L));
+        doNothing().when(repository).deleteById(10L);
+		service.delete(10L);
+        assertAll(() -> service.delete(10L));
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -39,6 +40,9 @@ public class SessionControllerIT {
 	private ObjectMapper objectMapper;
 	@Autowired
 	private UserRepository userRepository;
+	
+	
+	final 
 
 	@AfterEach
 	void cleanDataBase() {
@@ -48,12 +52,29 @@ public class SessionControllerIT {
 
 	@Test
 	@WithMockUser(roles = "USER")
-	void shouldGetSessionById() throws Exception {
+	void shouldGetSessionById() throws Exception {	
 		LocalDateTime rightNow = LocalDateTime.now();
 		Date date = new Date();
-		Session session = Session.builder().name("test").date(date).description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
-		Long id = sessionRepository.save(session).getId();
+		
+		final User initialUser = User.builder()
+				.email("participant@mail.fr")
+				.firstName("participant")
+				.lastName("participant")
+				.password("participant123")
+				.admin(true).createdAt(rightNow)
+				.updatedAt(rightNow)
+				.build();
+		List<User> participationList = new ArrayList<User>() {{add(initialUser);}};
+		Session initialSession = Session.builder()
+				.name("test")
+				.date(date)
+				.description("description test")
+				.createdAt(rightNow)
+				.teacher(null)
+				.updatedAt(rightNow)
+				.users(participationList)
+				.build();
+		Long id = sessionRepository.save(initialSession).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/" + id))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().string(containsString("test")));
@@ -62,15 +83,18 @@ public class SessionControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldGetAllSession() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		Session session = Session.builder().name("test").date(date).description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
-		Session session1 = Session.builder().name("test1").date(date).description("description test1")
-				.createdAt(rightNow).teacher(null).updatedAt(rightNow).users(null).build();
+		sessionRepository.save(initialSession);
+		Session session = Session.builder()
+				.name("test1")
+				.date(date)
+				.description("description test1")
+				.createdAt(rightNow)
+				.teacher(null).updatedAt(rightNow)
+				.users(null)
+				.build();
 		sessionRepository.save(session);
-		sessionRepository.save(session1);
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/")).andExpect(MockMvcResultMatchers.status().isOk())
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[1].name").value("test1"));
 
 	}
@@ -78,10 +102,16 @@ public class SessionControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldCreateSessionTest() throws Exception {
-		Date date = new Date();
-		LocalDateTime rightNow = LocalDateTime.now();
-		SessionDto sessionDto = SessionDto.builder().name("test").date(date).description("description test")
-				.createdAt(rightNow).teacher_id(1L).updatedAt(rightNow).users(null).build();
+	
+		SessionDto sessionDto = SessionDto.builder()
+								.name("test")
+								.date(date)
+								.description("description test")
+								.createdAt(rightNow)
+								.teacher_id(1L)
+								.updatedAt(rightNow)
+								.users(null)
+								.build();
 		String content = objectMapper.writeValueAsString(sessionDto);
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/api/session")
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(content);
@@ -93,13 +123,17 @@ public class SessionControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldUpdateSessionTest() throws Exception {
-		Date date = new Date();
-		LocalDateTime rightNow = LocalDateTime.now();
-		Session savedSession = Session.builder().name("test").date(date).description("description test")
-				.createdAt(rightNow).teacher(null).updatedAt(rightNow).users(null).build();
-		Long id= (sessionRepository.save(savedSession)).getId();
-		SessionDto updatedContent = SessionDto.builder().name("test").date(date).description("description test")
-				.createdAt(rightNow).teacher_id(1L).updatedAt(rightNow).users(null).build();
+	
+		Long id= sessionRepository.save(initialSession).getId();
+		SessionDto updatedContent = SessionDto.builder()
+									.name("test")
+									.date(date)
+									.description("description test")
+									.createdAt(rightNow)
+									.teacher_id(1L)
+									.updatedAt(rightNow)
+									.users(null)
+									.build();
 		String content = objectMapper.writeValueAsString(updatedContent);
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/api/session/"+id)
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(content);
@@ -109,32 +143,27 @@ public class SessionControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldDeleteSessionTest() throws Exception {
-		Date date = new Date();
-		LocalDateTime rightNow = LocalDateTime.now();
-		Session session = Session.builder().name("test").date(date).description("description test")
-				.createdAt(rightNow).teacher(null).updatedAt(rightNow).users(null).build();
-		Long id= (sessionRepository.save(session)).getId();
+	
+		Long id= sessionRepository.save(initialSession).getId();
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/"+id))
 		.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldAddParticipationSessionTest() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		User participant = User.builder().email("participant@mail.fr").firstName("participant")
-				.lastName("participant").password("participant123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		userRepository.save(participant);
-		List<User> participationList = new ArrayList<User>() {{add(participant);}} ;
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(participationList).build();
-		User user = User.builder().email("test@mail.fr").firstName("firstName")
-				.lastName("lastName").password("test123")
-				.admin(false).createdAt(rightNow).updatedAt(rightNow).build();
+		sessionRepository.save(initialSession);
+		userRepository.save(initialUser);
+		User user = User.builder()
+				.email("test@mail.fr")
+				.firstName("firstName")
+				.lastName("lastName")
+				.password("test123")
+				.admin(false)
+				.createdAt(rightNow)
+				.updatedAt(rightNow)
+				.build();
 		Long userId = (userRepository.save(user)).getId();
-		Long sessionId= (sessionRepository.save(session)).getId();
+		Long sessionId= initialSession.getId();
 		mockMvc.perform(MockMvcRequestBuilders
 				.post("/api/session/{sessionId}/participate/{userId}",sessionId,userId))		
 				.andExpect(MockMvcResultMatchers.status().isOk());
@@ -142,18 +171,9 @@ public class SessionControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldCancelParticipationSessionTest() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		User participant = User.builder().email("participant@mail.fr").firstName("participant")
-				.lastName("participant").password("participant123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		List<User> participationList = new ArrayList<User>() {{add(participant);}} ;
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(participationList).build();
-	
-		Long participantId = (userRepository.save(participant)).getId();
-		Long sessionId= (sessionRepository.save(session)).getId();
+		sessionRepository.save(initialSession);
+		Long participantId = userRepository.save(initialUser).getId();
+		Long sessionId= sessionRepository.save(initialSession).getId();
 		mockMvc.perform(MockMvcRequestBuilders
 				.delete("/api/session/{sessionId}/participate/{participantId}",sessionId,participantId))		
 				.andExpect(MockMvcResultMatchers.status().isOk());

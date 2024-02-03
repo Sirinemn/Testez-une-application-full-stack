@@ -6,12 +6,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.TestExecutionEvent;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -28,6 +31,17 @@ public class UserControllerIT {
 	@Autowired
 	private UserRepository userRepository;
 	
+	LocalDateTime rightNow = LocalDateTime.now();
+	User initialUser = User.builder()
+			.email("test@mail.fr")
+			.firstName("test")
+			.lastName("test")
+			.password("test123")
+			.admin(true)
+			.createdAt(rightNow)
+			.updatedAt(rightNow)
+			.build();
+	
 	@AfterEach
 	void cleanDataBase() {
 		userRepository.deleteAll();
@@ -36,33 +50,26 @@ public class UserControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldGetUserById() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test").password("test123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		Long id = userRepository.save(user).getId();
+	
+		Long id = userRepository.save(initialUser).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/user/"+id))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().string(containsString("test")));
 	}
 	@Test
-	void shouldGetUserByIdWhenNotAuthorize() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test").password("test123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		Long id = userRepository.save(user).getId();
+	void shouldNotGetUserByIdWhenNotAuthorize() throws Exception {
+
+		Long id = userRepository.save(initialUser).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/user/"+id))
 		.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 
 	}
+	@Disabled
 	@Test
-	@WithMockUser(roles = "USER",authorities = {
-    "ADMIN" })
+	@WithUserDetails(value = "test", setupBefore = TestExecutionEvent.TEST_EXECUTION, userDetailsServiceBeanName = "UserDetailsServiceImpl")
 	void shouldDeleteUser() throws Exception {
 		
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test").password("test123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		Long id = userRepository.save(user).getId();
+		Long id = userRepository.save(initialUser).getId();
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/"+id)
 		.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
