@@ -24,8 +24,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassrooms.starterjwt.dto.SessionDto;
 import com.openclassrooms.starterjwt.models.Session;
 import com.openclassrooms.starterjwt.models.User;
-import com.openclassrooms.starterjwt.repository.SessionRepository;
-import com.openclassrooms.starterjwt.repository.UserRepository;
 import com.openclassrooms.starterjwt.test.repository.SessionH2Repository;
 import com.openclassrooms.starterjwt.test.repository.UserH2Repository;
 
