@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.openclassrooms.starterjwt.models.Teacher;
-import com.openclassrooms.starterjwt.repository.TeacherRepository;
+import com.openclassrooms.starterjwt.test.repository.TeacherH2Repository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -24,7 +24,7 @@ public class TeacherControllerIT {
 	@Autowired
 	private  MockMvc mockMvc;	
 	@Autowired
-	private TeacherRepository teacherRepository;
+	private TeacherH2Repository teacherH2Repository;
 	
 	LocalDateTime rightNow = LocalDateTime.now();
 	final Teacher initialTeacher = Teacher.builder()
@@ -36,13 +36,13 @@ public class TeacherControllerIT {
 	
 	@AfterEach
 	void cleanDataBase() {
-		teacherRepository.deleteAll();
+		teacherH2Repository.deleteAll();
 	}
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldGetTeacherById() throws Exception {
 	
-		Long id = teacherRepository.save(initialTeacher).getId();
+		Long id = teacherH2Repository.save(initialTeacher).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/"+id))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().string(containsString("test")));
@@ -61,8 +61,8 @@ public class TeacherControllerIT {
 	void shouldGetAllTeacher() throws Exception {
 		Teacher teacher = Teacher.builder().firstName("test1").lastName("test1").createdAt(rightNow)
 				.updatedAt(rightNow).build();
-		teacherRepository.save(initialTeacher);
-		teacherRepository.save(teacher);
+		teacherH2Repository.save(initialTeacher);
+		teacherH2Repository.save(teacher);
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher"))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[1].firstName").value("test1"));

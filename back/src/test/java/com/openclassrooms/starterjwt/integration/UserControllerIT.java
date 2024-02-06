@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.openclassrooms.starterjwt.models.User;
-import com.openclassrooms.starterjwt.repository.UserRepository;
+import com.openclassrooms.starterjwt.test.repository.UserH2Repository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,8 +26,9 @@ public class UserControllerIT {
 	
 	@Autowired
 	private  MockMvc mockMvc;
-	@Autowired
-	private UserRepository userRepository;
+
+	 @Autowired
+	 private UserH2Repository h2Repository;
 	
 	LocalDateTime rightNow = LocalDateTime.now();
 	User initialUser = User.builder()
@@ -42,14 +43,14 @@ public class UserControllerIT {
 	
 	@AfterEach
 	void cleanDataBase() {
-		userRepository.deleteAll();
+		h2Repository.deleteAll();
 	}
 	
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldGetUserById() throws Exception {
 	
-		Long id = userRepository.save(initialUser).getId();
+		Long id = h2Repository.save(initialUser).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/user/"+id))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().string(containsString("test")));
@@ -57,7 +58,7 @@ public class UserControllerIT {
 	@Test
 	void shouldNotGetUserByIdWhenNotAuthorize() throws Exception {
 
-		Long id = userRepository.save(initialUser).getId();
+		Long id = h2Repository.save(initialUser).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/user/"+id))
 		.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 
@@ -74,7 +75,7 @@ public class UserControllerIT {
 	@Test
 	void shouldDeleteUser() throws Exception {
 		
-		Long id = userRepository.save(initialUser).getId();
+		Long id = h2Repository.save(initialUser).getId();
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/"+id).with(user("test@mail.fr"))
 		.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
