@@ -1,3 +1,4 @@
+///<reference types="Cypress"/>
 describe('Login spec', () => {
   it('Login successfull', () => {
     cy.login('yoga@studio.com','test!1234');
@@ -8,7 +9,7 @@ describe('Login spec', () => {
 
     })
 
-  it('Login failed', () => {
+  it('Login failed without ', () => {
     cy.visit('/login')
 
 

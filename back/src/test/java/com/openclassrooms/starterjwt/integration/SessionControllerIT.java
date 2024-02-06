@@ -26,6 +26,8 @@ import com.openclassrooms.starterjwt.models.Session;
 import com.openclassrooms.starterjwt.models.User;
 import com.openclassrooms.starterjwt.repository.SessionRepository;
 import com.openclassrooms.starterjwt.repository.UserRepository;
+import com.openclassrooms.starterjwt.test.repository.SessionH2Repository;
+import com.openclassrooms.starterjwt.test.repository.UserH2Repository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -34,43 +36,82 @@ public class SessionControllerIT {
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
-	SessionRepository sessionRepository;
+	 private UserH2Repository h2UserRepository;
 	@Autowired
 	private ObjectMapper objectMapper;
 	@Autowired
-	private UserRepository userRepository;
+	private SessionH2Repository h2SessionRepository;
+	
+	LocalDateTime rightNow = LocalDateTime.now();
+	Date date = new Date();
+	
+	User initialUser = User.builder()
+			.email("participant@mail.fr")
+			.firstName("participant")
+			.lastName("participant")
+			.password("participant123")
+			.admin(true)
+			.createdAt(rightNow)
+			.updatedAt(rightNow)
+			.build();
+	List<User> participationList = new ArrayList<User>() {{add(initialUser);}};
+	Session initialSession = Session.builder()
+			.name("test")
+			.date(date)
+			.description("description test")
+			.createdAt(rightNow)
+			.teacher(null)
+			.updatedAt(rightNow)
+			.users(participationList)
+			.build();
+	
 
 	@AfterEach
 	void cleanDataBase() {
-		sessionRepository.deleteAll();
-		userRepository.deleteAll();
+		h2SessionRepository.deleteAll();
+		h2UserRepository.deleteAll();
 	}
 
 	@Test
 	@WithMockUser(roles = "USER")
-	void shouldGetSessionById() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		Session session = Session.builder().name("test").date(date).description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
-		Long id = sessionRepository.save(session).getId();
+	void shouldGetSessionById() throws Exception {	
+		h2UserRepository.save(initialUser);
+		Long id = h2SessionRepository.save(initialSession).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/" + id))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().string(containsString("test")));
+	}
+	@Test
+	void shouldNotGetSessionByIdWhenNotAuthorize() throws Exception {	
+		h2UserRepository.save(initialUser);
+		Long id = h2SessionRepository.save(initialSession).getId();
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/" + id))
+				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
+	}
+	@Test
+	@WithMockUser(roles = "USER")
+	void shouldNotGetSessionByIdWhenNotFound() throws Exception {	
+		Long id = 1L;
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/" + id))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldGetAllSession() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		Session session = Session.builder().name("test").date(date).description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
-		Session session1 = Session.builder().name("test1").date(date).description("description test1")
-				.createdAt(rightNow).teacher(null).updatedAt(rightNow).users(null).build();
-		sessionRepository.save(session);
-		sessionRepository.save(session1);
-		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/")).andExpect(MockMvcResultMatchers.status().isOk())
+		h2UserRepository.save(initialUser);
+		h2SessionRepository.save(initialSession);
+		Session session = Session.builder()
+				.name("test1")
+				.date(date)
+				.description("description test1")
+				.createdAt(rightNow)
+				.teacher(null).updatedAt(rightNow)
+				.users(null)
+				.build();
+		h2SessionRepository.save(session);
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.[1].name").value("test1"));
 
 	}
@@ -78,10 +119,16 @@ public class SessionControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldCreateSessionTest() throws Exception {
-		Date date = new Date();
-		LocalDateTime rightNow = LocalDateTime.now();
-		SessionDto sessionDto = SessionDto.builder().name("test").date(date).description("description test")
-				.createdAt(rightNow).teacher_id(1L).updatedAt(rightNow).users(null).build();
+	
+		SessionDto sessionDto = SessionDto.builder()
+								.name("test")
+								.date(date)
+								.description("description test")
+								.createdAt(rightNow)
+								.teacher_id(1L)
+								.updatedAt(rightNow)
+								.users(null)
+								.build();
 		String content = objectMapper.writeValueAsString(sessionDto);
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/api/session")
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(content);
@@ -93,13 +140,17 @@ public class SessionControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldUpdateSessionTest() throws Exception {
-		Date date = new Date();
-		LocalDateTime rightNow = LocalDateTime.now();
-		Session savedSession = Session.builder().name("test").date(date).description("description test")
-				.createdAt(rightNow).teacher(null).updatedAt(rightNow).users(null).build();
-		Long id= (sessionRepository.save(savedSession)).getId();
-		SessionDto updatedContent = SessionDto.builder().name("test").date(date).description("description test")
-				.createdAt(rightNow).teacher_id(1L).updatedAt(rightNow).users(null).build();
+		h2UserRepository.save(initialUser);
+		Long id= h2SessionRepository.save(initialSession).getId();
+		SessionDto updatedContent = SessionDto.builder()
+									.name("test")
+									.date(date)
+									.description("description test")
+									.createdAt(rightNow)
+									.teacher_id(1L)
+									.updatedAt(rightNow)
+									.users(null)
+									.build();
 		String content = objectMapper.writeValueAsString(updatedContent);
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.put("/api/session/"+id)
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(content);
@@ -109,53 +160,63 @@ public class SessionControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldDeleteSessionTest() throws Exception {
-		Date date = new Date();
-		LocalDateTime rightNow = LocalDateTime.now();
-		Session session = Session.builder().name("test").date(date).description("description test")
-				.createdAt(rightNow).teacher(null).updatedAt(rightNow).users(null).build();
-		Long id= (sessionRepository.save(session)).getId();
+		h2UserRepository.save(initialUser);
+		Long id= h2SessionRepository.save(initialSession).getId();
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/"+id))
 		.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	@Test
 	@WithMockUser(roles = "USER")
+	void shouldNotDeleteSessionWhenNotFoundTest() throws Exception {
+		Long id= 1L;
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/"+id))
+		.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	@Test
+	@WithMockUser(roles = "USER")
 	void shouldAddParticipationSessionTest() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		User participant = User.builder().email("participant@mail.fr").firstName("participant")
-				.lastName("participant").password("participant123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		userRepository.save(participant);
-		List<User> participationList = new ArrayList<User>() {{add(participant);}} ;
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(participationList).build();
-		User user = User.builder().email("test@mail.fr").firstName("firstName")
-				.lastName("lastName").password("test123")
-				.admin(false).createdAt(rightNow).updatedAt(rightNow).build();
-		Long userId = (userRepository.save(user)).getId();
-		Long sessionId= (sessionRepository.save(session)).getId();
+		h2UserRepository.save(initialUser);
+		h2SessionRepository.save(initialSession);
+		User user = User.builder()
+				.email("test@mail.fr")
+				.firstName("firstName")
+				.lastName("lastName")
+				.password("test123")
+				.admin(false)
+				.createdAt(rightNow)
+				.updatedAt(rightNow)
+				.build();
+		Long userId = (h2UserRepository.save(user)).getId();
+		Long sessionId= initialSession.getId();
 		mockMvc.perform(MockMvcRequestBuilders
 				.post("/api/session/{sessionId}/participate/{userId}",sessionId,userId))		
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	@Test
 	@WithMockUser(roles = "USER")
+	void shouldNotAddParticipationSessionWhenAlreadyParticipate() throws Exception {
+		Long userId = (h2UserRepository.save(initialUser)).getId();
+		Long sessionId= h2SessionRepository.save(initialSession).getId();
+		mockMvc.perform(MockMvcRequestBuilders
+				.post("/api/session/{sessionId}/participate/{userId}",sessionId,userId))		
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	@Test
+	@WithMockUser(roles = "USER")
 	void shouldCancelParticipationSessionTest() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		Date date = new Date();
-		User participant = User.builder().email("participant@mail.fr").firstName("participant")
-				.lastName("participant").password("participant123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		List<User> participationList = new ArrayList<User>() {{add(participant);}} ;
-		Session session = Session.builder().name("test").date(date)
-				.description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(participationList).build();
-	
-		Long participantId = (userRepository.save(participant)).getId();
-		Long sessionId= (sessionRepository.save(session)).getId();
+		Long participantId = h2UserRepository.save(initialUser).getId();
+		Long sessionId= h2SessionRepository.save(initialSession).getId();
 		mockMvc.perform(MockMvcRequestBuilders
 				.delete("/api/session/{sessionId}/participate/{participantId}",sessionId,participantId))		
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	@Test
+	@WithMockUser(roles = "USER")
+	void shouldNotCancelParticipationSessionWhenNotParticipate() throws Exception {
+		h2UserRepository.save(initialUser).getId();
+		Long sessionId= h2SessionRepository.save(initialSession).getId();
+		mockMvc.perform(MockMvcRequestBuilders
+				.delete("/api/session/{sessionId}/participate/{participantId}",sessionId,1L))		
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 }

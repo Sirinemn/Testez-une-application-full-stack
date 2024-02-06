@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,6 +33,16 @@ public class AuthControllerIT {
 	@Autowired
 	private ObjectMapper objectMapper;
 	
+	LocalDateTime rightNow = LocalDateTime.now();
+	User initialUser = User.builder()
+			.email("test@mail.fr")
+			.firstName("test")
+			.lastName("test")
+			.password(passwordEncoder().encode("test123"))
+			.admin(true).createdAt(rightNow)
+			.updatedAt(rightNow)
+			.build();
+	
 	@AfterEach
 	void cleanDataBase() {
 		userRepository.deleteAll();
@@ -47,13 +56,10 @@ public class AuthControllerIT {
 	@Test
     @Transactional
 	void shouldLoginSuccessful() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test")
-				.password(passwordEncoder().encode("test123"))
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		userRepository.save(user);
+	
+		userRepository.save(initialUser);
 		LoginRequest loginRequest = new LoginRequest();
-		loginRequest.setEmail(user.getEmail());
+		loginRequest.setEmail(initialUser.getEmail());
 		loginRequest.setPassword("test123");
 		String content = objectMapper.writeValueAsString(loginRequest);
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/api/auth/login")
@@ -63,12 +69,9 @@ public class AuthControllerIT {
 
 	@Test
 	void loginWithBadPasswordLoginShouldFail() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test")
-				.password(passwordEncoder().encode("test123"))
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
+	
 		LoginRequest loginRequest = new LoginRequest();
-		loginRequest.setEmail(user.getEmail());
+		loginRequest.setEmail(initialUser.getEmail());
 		loginRequest.setPassword("1234");
 		String content = objectMapper.writeValueAsString(loginRequest);
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/api/auth/login")
@@ -76,14 +79,10 @@ public class AuthControllerIT {
 		mockMvc.perform(mockRequest).andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	@Test
-    @Transactional
 	void shouldRegisterSuccessful() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test")
-				.password(passwordEncoder().encode("test123"))
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
+		
 		SignupRequest signupRequest = new SignupRequest();
-		signupRequest.setEmail(user.getEmail());
+		signupRequest.setEmail(initialUser.getEmail());
 		signupRequest.setPassword("test123");
 		signupRequest.setFirstName("test");
 		signupRequest.setLastName("test");

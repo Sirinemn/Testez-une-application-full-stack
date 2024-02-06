@@ -1,3 +1,4 @@
+///<reference types="Cypress"/>
 describe('Logout spec', () => {
     it('Logout successfull', () => {
         cy.login('yoga@studio.com','test!1234');

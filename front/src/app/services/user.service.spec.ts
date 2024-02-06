@@ -45,11 +45,11 @@ describe('UserService', () => {
     });
   });
 
-  it(' should get a user by id', (done) => {
+  it(' should get a user by id', () => {
     const id = '1';
     service.getById(id).subscribe((res) => {
       expect(res).toEqual(userMock)
-      done();
+      ;
 
     });
     const req = http.expectOne({

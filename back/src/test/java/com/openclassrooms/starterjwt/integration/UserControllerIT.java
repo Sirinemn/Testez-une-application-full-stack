@@ -1,6 +1,7 @@
 package com.openclassrooms.starterjwt.integration;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.openclassrooms.starterjwt.models.User;
-import com.openclassrooms.starterjwt.repository.UserRepository;
+import com.openclassrooms.starterjwt.test.repository.UserH2Repository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -25,45 +26,57 @@ public class UserControllerIT {
 	
 	@Autowired
 	private  MockMvc mockMvc;
-	@Autowired
-	private UserRepository userRepository;
+
+	 @Autowired
+	 private UserH2Repository h2Repository;
+	
+	LocalDateTime rightNow = LocalDateTime.now();
+	User initialUser = User.builder()
+			.email("test@mail.fr")
+			.firstName("test")
+			.lastName("test")
+			.password("test123")
+			.admin(true)
+			.createdAt(rightNow)
+			.updatedAt(rightNow)
+			.build();
 	
 	@AfterEach
 	void cleanDataBase() {
-		userRepository.deleteAll();
+		h2Repository.deleteAll();
 	}
 	
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldGetUserById() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test").password("test123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		Long id = userRepository.save(user).getId();
+	
+		Long id = h2Repository.save(initialUser).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/user/"+id))
 		.andExpect(MockMvcResultMatchers.status().isOk())
 		.andExpect(MockMvcResultMatchers.content().string(containsString("test")));
 	}
 	@Test
-	void shouldGetUserByIdWhenNotAuthorize() throws Exception {
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test").password("test123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		Long id = userRepository.save(user).getId();
+	void shouldNotGetUserByIdWhenNotAuthorize() throws Exception {
+
+		Long id = h2Repository.save(initialUser).getId();
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/user/"+id))
 		.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 
 	}
 	@Test
-	@WithMockUser(roles = "USER",authorities = {
-    "ADMIN" })
+	@WithMockUser(roles = "USER")
+	void shouldNotGetUserByIdWhenNotFound() throws Exception {
+
+		Long id = 1L;
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/user/"+id))
+		.andExpect(MockMvcResultMatchers.status().isNotFound());
+
+	}
+	@Test
 	void shouldDeleteUser() throws Exception {
 		
-		LocalDateTime rightNow = LocalDateTime.now();
-		User user = User.builder().email("test@mail.fr").firstName("test").lastName("test").password("test123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
-		Long id = userRepository.save(user).getId();
-		mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/"+id)
+		Long id = h2Repository.save(initialUser).getId();
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/"+id).with(user("test@mail.fr"))
 		.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
 	}

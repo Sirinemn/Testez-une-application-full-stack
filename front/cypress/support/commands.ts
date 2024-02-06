@@ -51,8 +51,7 @@
     cy.get('input[formControlName=email]').type(email)
     cy.get('input[formControlName=password]').type(`${password}{enter}{enter}`)
 }
-//
-// NOTE: You can use it like so:
+
 Cypress.Commands.add('login', login);
 //
 // ***********************************************

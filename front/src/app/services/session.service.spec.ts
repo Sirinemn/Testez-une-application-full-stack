@@ -6,15 +6,15 @@ import { SessionInformation } from '../interfaces/sessionInformation.interface';
 
 describe('SessionService', () => {
   let service: SessionService;
-  let mockSessionInformation : SessionInformation ={ 
+  let mockSessionInformation: SessionInformation = {
     token: 'tokenTest',
     type: '',
     id: 1,
     username: 'userNameTest',
     firstName: 'firstNameTest',
     lastName: 'lastNameTest',
-    admin: true
-  }
+    admin: true,
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -23,5 +23,21 @@ describe('SessionService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+  it('should ', () => {
+    //Given
+    let isLogged = service.isLogged;
+    //when
+    service.logIn(mockSessionInformation);
+    //then
+    expect(isLogged).toBeTruthy;
+  });
+  it('should ', () => {
+    //Given
+    let isLogged = service.isLogged;
+    //when
+    service.logOut();
+    //then
+    expect(isLogged).toBeFalsy;
   });
 });
