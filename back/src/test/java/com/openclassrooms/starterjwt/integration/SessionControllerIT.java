@@ -79,6 +79,20 @@ public class SessionControllerIT {
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().string(containsString("test")));
 	}
+	@Test
+	void shouldNotGetSessionByIdWhenNotAuthorize() throws Exception {	
+		userRepository.save(initialUser);
+		Long id = sessionRepository.save(initialSession).getId();
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/" + id))
+				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
+	}
+	@Test
+	@WithMockUser(roles = "USER")
+	void shouldNotGetSessionByIdWhenNotFound() throws Exception {	
+		Long id = 1L;
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/session/" + id))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
 
 	@Test
 	@WithMockUser(roles = "USER")
@@ -151,6 +165,13 @@ public class SessionControllerIT {
 	}
 	@Test
 	@WithMockUser(roles = "USER")
+	void shouldNotDeleteSessionWhenNotFoundTest() throws Exception {
+		Long id= 1L;
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/session/"+id))
+		.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	@Test
+	@WithMockUser(roles = "USER")
 	void shouldAddParticipationSessionTest() throws Exception {
 		userRepository.save(initialUser);
 		sessionRepository.save(initialSession);
@@ -171,11 +192,29 @@ public class SessionControllerIT {
 	}
 	@Test
 	@WithMockUser(roles = "USER")
+	void shouldNotAddParticipationSessionWhenAlreadyParticipate() throws Exception {
+		Long userId = (userRepository.save(initialUser)).getId();
+		Long sessionId= sessionRepository.save(initialSession).getId();
+		mockMvc.perform(MockMvcRequestBuilders
+				.post("/api/session/{sessionId}/participate/{userId}",sessionId,userId))		
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	@Test
+	@WithMockUser(roles = "USER")
 	void shouldCancelParticipationSessionTest() throws Exception {
 		Long participantId = userRepository.save(initialUser).getId();
 		Long sessionId= sessionRepository.save(initialSession).getId();
 		mockMvc.perform(MockMvcRequestBuilders
 				.delete("/api/session/{sessionId}/participate/{participantId}",sessionId,participantId))		
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	@Test
+	@WithMockUser(roles = "USER")
+	void shouldNotCancelParticipationSessionWhenNotParticipate() throws Exception {
+		userRepository.save(initialUser).getId();
+		Long sessionId= sessionRepository.save(initialSession).getId();
+		mockMvc.perform(MockMvcRequestBuilders
+				.delete("/api/session/{sessionId}/participate/{participantId}",sessionId,1L))		
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 }

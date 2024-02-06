@@ -1,3 +1,4 @@
+///<reference types="Cypress"/>
 describe('Account spec', () => {
     it('User information', () => {
         cy.login('yoga@studio.com','test!1234');

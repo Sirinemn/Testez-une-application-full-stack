@@ -64,7 +64,7 @@ class SessoinServiceTests {
 
 	@Test
 	void shouldCreateSessionTest() {
-	
+		
 		when(sessionRepository.save(initialSession)).thenReturn(initialSession);
 		sessionServiceMock.create(initialSession);
 		verify(sessionRepository, times(1)).save(initialSession);
@@ -79,11 +79,19 @@ class SessoinServiceTests {
 
 	@Test
 	void shouldGetAllSessionTest() {
-		Session session = Session.builder().name("test").date(date).description("description test").createdAt(rightNow)
-				.teacher(null).updatedAt(rightNow).users(null).build();
+		Session session = Session.builder()
+				.name("test")
+				.date(date)
+				.description("description test")
+				.createdAt(rightNow)
+				.teacher(null)
+				.updatedAt(rightNow)
+				.users(null)
+				.build();
 
 		when(sessionRepository.findAll()).thenReturn(Stream.of(session, initialSession).collect(Collectors.toList()));
 		Assertions.assertThat(sessionServiceMock.findAll().size()).isEqualTo(2);
+		verify(sessionRepository, times(1)).findAll();
 
 	}
 
@@ -92,6 +100,7 @@ class SessoinServiceTests {
 		
 		when(sessionRepository.findById(1L)).thenReturn(Optional.of(initialSession));
 		Assertions.assertThat(sessionServiceMock.getById(1L)).isNotNull();
+		verify(sessionRepository, times(1)).findById(1L);
 	}
 
 	@Test
@@ -99,14 +108,22 @@ class SessoinServiceTests {
 	
 		when(sessionRepository.save(initialSession)).thenReturn(initialSession);
         Assertions.assertThat(sessionServiceMock.update(1L, initialSession)).isNotNull();
+		verify(sessionRepository, times(1)).save(initialSession);
+
 	}
 
 	@Test
 	void shouldAddParticipationToSessionTest() {
 
-		User user = User.builder().email("test@mail.fr").firstName("firstName")
-				.lastName("lastName").password("test123")
-				.admin(true).createdAt(rightNow).updatedAt(rightNow).build();
+		User user = User.builder()
+				.email("test@mail.fr")
+				.firstName("firstName")
+				.lastName("lastName")
+				.password("test123")
+				.admin(true)
+				.createdAt(rightNow)
+				.updatedAt(rightNow)
+				.build();
 		Long userId = user.getId();
 		Long sessionId = initialSession.getId();
 

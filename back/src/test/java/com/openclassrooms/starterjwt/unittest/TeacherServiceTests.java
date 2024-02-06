@@ -55,7 +55,7 @@ import com.openclassrooms.starterjwt.services.TeacherService;
 	@Test
 	 void shouldGetTeacherByIdTest() {
 	
-		when(repository.findById((long) 10)).thenReturn(Optional.of(initialTeacher));
+		when(repository.findById(10L)).thenReturn(Optional.of(initialTeacher));
 		Assertions.assertThat(service.findById(10L)).isNotNull();
 		verify(repository).findById(10L);
 	}

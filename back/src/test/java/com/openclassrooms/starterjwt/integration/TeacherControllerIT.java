@@ -47,6 +47,14 @@ public class TeacherControllerIT {
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().string(containsString("test")));
 	}
+	@Test
+	@WithMockUser(roles = "USER")
+	void shouldNotGetTeacherByIdWhenNotFound() throws Exception {
+	
+		Long id = 1L;
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher/"+id))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
 
 	@Test
 	@WithMockUser(roles = "USER")

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -80,7 +79,6 @@ public class AuthControllerIT {
 		mockMvc.perform(mockRequest).andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	@Test
-    @Transactional
 	void shouldRegisterSuccessful() throws Exception {
 		
 		SignupRequest signupRequest = new SignupRequest();

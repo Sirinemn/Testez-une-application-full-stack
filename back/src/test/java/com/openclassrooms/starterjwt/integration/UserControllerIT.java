@@ -1,20 +1,18 @@
 package com.openclassrooms.starterjwt.integration;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.TestExecutionEvent;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -64,13 +62,20 @@ public class UserControllerIT {
 		.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 
 	}
-	@Disabled
 	@Test
-	@WithUserDetails(value = "test", setupBefore = TestExecutionEvent.TEST_EXECUTION, userDetailsServiceBeanName = "UserDetailsServiceImpl")
+	@WithMockUser(roles = "USER")
+	void shouldNotGetUserByIdWhenNotFound() throws Exception {
+
+		Long id = 1L;
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/user/"+id))
+		.andExpect(MockMvcResultMatchers.status().isNotFound());
+
+	}
+	@Test
 	void shouldDeleteUser() throws Exception {
 		
 		Long id = userRepository.save(initialUser).getId();
-		mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/"+id)
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/"+id).with(user("test@mail.fr"))
 		.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
 	}
