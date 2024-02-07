@@ -59,8 +59,12 @@ public class TeacherControllerIT {
 	@Test
 	@WithMockUser(roles = "USER")
 	void shouldGetAllTeacher() throws Exception {
-		Teacher teacher = Teacher.builder().firstName("test1").lastName("test1").createdAt(rightNow)
-				.updatedAt(rightNow).build();
+		Teacher teacher = Teacher.builder()
+				.firstName("test1")
+				.lastName("test1")
+				.createdAt(rightNow)
+				.updatedAt(rightNow)
+				.build();
 		teacherH2Repository.save(initialTeacher);
 		teacherH2Repository.save(teacher);
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/teacher"))
