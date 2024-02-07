@@ -1,6 +1,7 @@
 package com.openclassrooms.starterjwt.controllers;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -92,7 +93,9 @@ public class AuthControllerTest {
 		String content = objectMapper.writeValueAsString(signupRequest);
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/api/auth/register")
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(content);
-		mockMvc.perform(mockRequest).andExpect(MockMvcResultMatchers.status().isOk());
+		mockMvc.perform(mockRequest).andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(jsonPath("$.message").value("User registered successfully!"));
+
 	}
 	@Test
 	void shouldNotRegisterWhenUserAlreadyExiste() throws Exception {
@@ -106,7 +109,8 @@ public class AuthControllerTest {
 		String content = objectMapper.writeValueAsString(signupRequest);
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/api/auth/register")
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON).content(content);
-		mockMvc.perform(mockRequest).andExpect(MockMvcResultMatchers.status().isBadRequest());
+		mockMvc.perform(mockRequest).andExpect(MockMvcResultMatchers.status().isBadRequest())
+		.andExpect(jsonPath("$.message").value("Error: Email is already taken!"));
 	}
 
 }
