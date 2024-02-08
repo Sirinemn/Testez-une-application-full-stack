@@ -29,7 +29,7 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button
+          <button id="detail"
             mat-raised-button
             color="primary"
             [routerLink]="['detail', session.id]"
@@ -37,7 +37,7 @@
             <mat-icon>search</mat-icon>
             <span class="ml1">Detail</span>
           </button>
-          <button
+          <button id="edit"
             *ngIf="user!.admin"
             mat-raised-button
             color="primary"

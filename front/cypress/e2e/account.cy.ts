@@ -1,7 +1,12 @@
 ///<reference types="Cypress"/>
 describe('Account spec', () => {
-    it('User information', () => {
+    beforeEach(() => {
+
         cy.login('yoga@studio.com','test!1234');
+      
+      })
+    
+    it('User information', () => {
         cy.intercept(
             {
               method: 'GET',

@@ -20,7 +20,7 @@
         lastName: 'lastName',
         admin: true
       },
-    })
+    }).as("login");
 
     cy.intercept(
       {
